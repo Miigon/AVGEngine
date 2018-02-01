@@ -1,20 +1,21 @@
 #pragma once
 
 #include "util/Window.h"
+#include "scene/IScene.h"
 #include <GL/glew.h>
 
 class Application
 {
+	//窗体
 	WindowPtr mWindow;
+
+	//场景
+	IScenePtr mScene;
+
 public:
 	void draw()
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	}
-
-	void keyEvent(int key, bool isDown)
-	{
-
+		mScene->draw();
 	}
 
 	void mouseMoveEvent(double mouseX, double mouseY)
@@ -26,6 +27,11 @@ public:
 	{
 
 	}
+	
+	void tickEvent()
+	{
+		mScene->tick();
+	}
 
 	Application()
 	{
@@ -36,11 +42,15 @@ public:
 		{
 			mouseButtonEvent(mouseX, mouseY, isLeft, isDown);
 		});
-		mWindow->setKeyboardCallback([&](int key, bool isDown) { keyEvent(key, isDown); });
+		mWindow->setTickCallback([&]() { tickEvent(); });
 	}
 
-	void run()
+	/*!运行程序
+	 * @param startScene 开始时显示的场景
+	 */
+	void run(const IScenePtr& startScene)
 	{
+		mScene = startScene;
 		mWindow->joinLoop();
 	}
 };

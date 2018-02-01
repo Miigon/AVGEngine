@@ -18,6 +18,19 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AVGEngine.cpp" />
+    <ClCompile Include="src\scene\MainMenuScene.cpp" />
+    <ClCompile Include="src\util\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\scene\IScene.h" />
+    <ClInclude Include="src\scene\MainMenuScene.h" />
+    <ClInclude Include="src\util\Resource.h" />
+    <ClInclude Include="src\util\Uncopyable.h" />
+    <ClInclude Include="src\util\Window.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F3CFBB52-CC38-4DAE-8D8D-53D511052BBA}</ProjectGuid>
@@ -146,14 +159,6 @@
       <AdditionalDependencies>Opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\Application.h" />
-    <ClInclude Include="..\src\util\Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\AVGEngine.cpp" />
-    <ClCompile Include="..\src\util\Window.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

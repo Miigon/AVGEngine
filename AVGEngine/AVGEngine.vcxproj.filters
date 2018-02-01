@@ -4,17 +4,35 @@
     <Filter Include="util">
       <UniqueIdentifier>{33688c87-a36d-4747-a5f3-8415e240561f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{a6606d14-deb4-49f3-a761-4db67716c078}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\util\Window.cpp">
+    <ClCompile Include="src\util\Window.cpp">
       <Filter>util</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\AVGEngine.cpp" />
+    <ClCompile Include="src\AVGEngine.cpp" />
+    <ClCompile Include="src\scene\MainMenuScene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\util\Window.h">
+    <ClInclude Include="src\util\Window.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Application.h" />
+    <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\scene\IScene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Uncopyable.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\MainMenuScene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Resource.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
