@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Uncopyable.h"
 #include <memory>
 #include <functional>
+#include <boost/noncopyable.hpp>
 
 #define TICK_PER_SECOND 50
 
@@ -13,7 +13,7 @@ using WindowPtr= std::shared_ptr<Window>;
  * 负责管理窗体等
  * @note 为了支持移动端不支持捕获键盘事件
  */
-class Window :Uncopyable
+class Window :boost::noncopyable
 {
 public:
 	using MouseMoveCallback = std::function<void(double, double)>;
@@ -26,7 +26,7 @@ private:
 
 public:
 	//释放资源等
-	~Window() override;
+	~Window();
 
 	/*!创建新窗体
 	 * @param title 窗体名称

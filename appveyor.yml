@@ -7,7 +7,7 @@ configuration:
   - Release
 before_build:
   - cmd: vcpkg integrate install
-  - cmd: vcpkg install glfw3 glew libpng
+  - cmd: vcpkg install glfw3 glew libpng boost-filesystem
 build:
   project: AVGEngine.sln
   verbosity: minimal

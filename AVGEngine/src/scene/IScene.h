@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../util/Uncopyable.h"
 #include <memory>
+#include <boost/noncopyable.hpp>
 
-class IScene :Uncopyable
+class IScene :boost::noncopyable
 {
 public:
 	//!‰÷»æ
@@ -11,6 +11,8 @@ public:
 	
 	//!tick
 	virtual void tick() = 0;
+
+	virtual ~IScene() = default;
 };
 
 using IScenePtr = std::shared_ptr<IScene>;

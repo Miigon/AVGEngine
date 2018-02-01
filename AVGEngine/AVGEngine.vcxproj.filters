@@ -16,6 +16,15 @@
     <ClCompile Include="src\scene\MainMenuScene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\util\Config.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\Resource.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\Texture.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\util\Window.h">
@@ -25,13 +34,16 @@
     <ClInclude Include="src\scene\IScene.h">
       <Filter>scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\Uncopyable.h">
-      <Filter>util</Filter>
-    </ClInclude>
     <ClInclude Include="src\scene\MainMenuScene.h">
       <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="src\util\Resource.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Config.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Texture.h">
       <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
