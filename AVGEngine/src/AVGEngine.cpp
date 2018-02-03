@@ -2,7 +2,7 @@
 #include "scene/MainMenuScene.h"
 #include <iostream>
 
-int main()
+int main(int argc, char* argv[])
 {
 	Application app;
 
@@ -15,4 +15,6 @@ int main()
 		std::cerr << e.what() << std::endl;
 		system("pause");
 	}
+
+	return 0;
 }

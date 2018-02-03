@@ -1,102 +1,99 @@
 #include "Window.h"
 
-#ifdef WIN32
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <vector>
+#include <stdexcept>
 
-//glfw窗体
-GLFWwindow* glfwWindow;
-
-//回调函数
-Window::MouseMoveCallback mouseMoveCallback;
-Window::MouseButtonCallback mouseButtonCallback;
-Window::TickCallback tickCallback = {};
-
-//渲染调用
-Window::DrawFunc drawFunc;
-
-//记录鼠标位置
-double mouseX = 0;
-double mouseY = 0;
+//SDL窗体
+SDL_Window* window = nullptr;
 
 //注册回调函数
-void Window::setMouseMoveCallback(const MouseMoveCallback& function) { mouseMoveCallback = function; }
-void Window::setMouseButtonCallback(const MouseButtonCallback& function) { mouseButtonCallback = function; }
-void Window::setTickCallback(const TickCallback& function) { tickCallback = function; }
+void Window::setMouseMoveCallback(const MouseMoveCallback& function) { mMouseMoveCallback = function; }
+void Window::setMouseButtonCallback(const MouseButtonCallback& function) { mMouseButtonCallback = function; }
+void Window::setTickCallback(const TickCallback& function) { mTickCallback = function; }
 
 //渲染调用
-void Window::setDrawFunc(const DrawFunc& function) { drawFunc = function; }
+void Window::setDrawFunc(const DrawFunc& function) { mDrawFunc = function; }
 
 //释放
-Window::~Window() { glfwTerminate(); }
+Window::~Window()
+{
+
+}
+
+//事件处理
+void Window::poolEvents()
+{
+	SDL_Event sdlEvent;
+
+	while (SDL_PollEvent(&sdlEvent))
+	{
+		switch (sdlEvent.type)
+		{
+		//退出
+		case SDL_QUIT:
+			mShouldClose = true;
+			break;
+		//鼠标移动
+		case SDL_MOUSEMOTION:
+			mMouseMoveCallback(sdlEvent.button.x, sdlEvent.button.y);
+			break;
+		//鼠标点击
+		case SDL_MOUSEBUTTONDOWN:
+			mMouseButtonCallback(sdlEvent.button.x, sdlEvent.button.y, sdlEvent.button.button, sdlEvent.button.state);
+			break;
+		default:
+			break;
+		}
+	}
+}
 
 //主循环
 void Window::joinLoop()
 {
-	if (!drawFunc)
+	if (!mDrawFunc)
 		throw(std::invalid_argument("drawFunc is empty"));
 
-	glfwShowWindow(glfwWindow);
+	auto lastTickTime = SDL_GetTicks();
 
-	auto lastTickTime = glfwGetTime();
-
-	while(!glfwWindowShouldClose(glfwWindow))
+	while(!mShouldClose)
 	{
-		const auto nowTime = glfwGetTime();
+		const auto nowTime = SDL_GetTicks();
 
-		glfwPollEvents();
+		poolEvents();
 
-		while (nowTime - lastTickTime >= 0.02)
+		while (nowTime - lastTickTime >= 20)
 		{
-			tickCallback();
-			lastTickTime += 0.02;
+			mTickCallback();
+			lastTickTime += 20;
 		}
-		drawFunc();
+		mDrawFunc();
 
-		glfwSwapBuffers(glfwWindow);
+		SDL_GL_SwapWindow(window);
 	}
 }
 
 //创建窗体
 WindowPtr Window::createWindow(const char* title, const int width, const int height)
 {
-	if (glfwWindow != nullptr)
+	if (window != nullptr)
 		throw(std::invalid_argument("An window has already exsited"));
 
 	WindowPtr windowPtr(new Window());
 
+	windowPtr->windowHeight = height;
+	windowPtr->windowWidth = width;
+
 	//初始化并创建窗体
-	glfwInit();
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-	glfwWindow = glfwCreateWindow(width, height, title, nullptr, nullptr);
-	if (!glfwWindow)
+	window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+	if (!window)
 		throw(std::runtime_error("Failed to create window"));
-	glfwMakeContextCurrent(glfwWindow);
+
+	SDL_GL_CreateContext(window);
+
+	//windows下初始化glew
+#ifdef _WIN32
 	if (glewInit() != GLEW_OK)
 		throw(std::runtime_error("Failed to init glew"));
-
-	if (mouseButtonCallback)
-		glfwSetMouseButtonCallback(glfwWindow, [](GLFWwindow*, int button, int action, int)
-		{
-			//不接受除左键右键以外的事件
-			if (!(button == GLFW_MOUSE_BUTTON_LEFT || button == GLFW_MOUSE_BUTTON_RIGHT))
-				return;
-
-			mouseButtonCallback(mouseX, mouseY, button == GLFW_MOUSE_BUTTON_LEFT, action == GLFW_PRESS);
-		});
-
-	if (mouseMoveCallback)
-		glfwSetCursorPosCallback(glfwWindow, [](GLFWwindow*, double posX, double posY)
-		{
-			mouseX = posX;
-			mouseY = posY;
-			mouseMoveCallback(mouseX, mouseY);
-		});
+#endif
 
 	return windowPtr;
 }
-#else
-	#error 不支持的系统！
-#endif

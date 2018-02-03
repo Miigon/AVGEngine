@@ -1,11 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Texture.h"
-#include <png.h>
 #include <stdexcept>
 
 TextureObj Texture::loadTexturePng(const char* fileName)
 {
-	TextureObj texture(new Texture());
+	/*TextureObj texture(new Texture());
 
 	const auto file = fopen(fileName, "rb");
 	auto pngPtr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
@@ -67,7 +66,8 @@ TextureObj Texture::loadTexturePng(const char* fileName)
 	fclose(file);
 	delete[] imageData;
 
-	return texture;
+	return texture;*/
+	return nullptr;
 }
 
 Texture::~Texture()

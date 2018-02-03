@@ -46,5 +46,8 @@
     <ClInclude Include="src\util\Texture.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\OpenGL.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
