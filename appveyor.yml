@@ -10,3 +10,6 @@ before_build:
 build:
   project: AVGEngine.sln
   verbosity: minimal
+  
+test_script:
+  vstest.console /logger:Appveyor C:\projects\avgengine\Release\AVGEngineTests.dll
