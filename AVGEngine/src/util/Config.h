@@ -3,18 +3,25 @@
 #include <map>
 #include <string>
 #include <memory>
-#include <boost/noncopyable.hpp>
 
 class Config;
 
 using ConfigPtr = std::shared_ptr<Config>;
 
-class Config :boost::noncopyable
+class Config
 {
 	std::map<std::string, std::string> mValueMap;
 
 	Config() = default;
+
 public:
+	~Config() = default;
+
+	Config(const Config&) = delete;
+	Config(const Config&&) = delete;
+	Config& operator=(const Config&&) = delete;
+	Config& operator=(const Config&) = delete;
+
 	//!º”‘ÿ≈‰÷√Œƒº˛
 	static ConfigPtr loadConfig(const char* fileName);
 

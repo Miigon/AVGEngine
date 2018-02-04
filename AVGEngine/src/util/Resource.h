@@ -2,12 +2,11 @@
 
 #include <utility>
 #include <memory>
-#include <boost/noncopyable.hpp>
 
 class Config;
 class Texture;
 
-class Resource :boost::noncopyable
+class Resource
 {
 public:
 	enum ResourceType

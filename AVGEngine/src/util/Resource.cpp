@@ -2,10 +2,10 @@
 #include "Config.h"
 #include <map>
 #include <string>
-#include <boost/filesystem.hpp>
+#include <filesystem>
 #include "Texture.h"
 
-using namespace boost::filesystem;
+using namespace std::experimental::filesystem;
 
 std::map<std::string, std::pair<Resource::ResourceType, std::shared_ptr<void>>> resourceMap;
 
@@ -27,7 +27,7 @@ void Resource::init()
 			if (c == '\\' || c == '/')
 				c = '.';
 
-		if (extension(item.path()) == ".cnf")
+		if (item.path().extension() == ".cnf")
 			registerResource
 			(
 				resKey.c_str(),
@@ -37,14 +37,14 @@ void Resource::init()
 					Config::loadConfig(item.path().string().c_str())
 				)
 			);
-		else if (extension(item.path()) == ".png")
+		else if (item.path().extension() == ".png")
 			registerResource
 			(
 				resKey.c_str(),
 				std::make_pair
 				(
 					TextureRes,
-					Texture::loadTexturePng(item.path().string().c_str())
+					Texture::loadTexture(item.path().string().c_str())
 				)
 			);
 	}

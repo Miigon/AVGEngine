@@ -1,5 +1,7 @@
-#include "Window.h"
 
+#include "Window.h"
+#include "OpenGL.h"
+#include <SDL2/SDL.h>
 #include <stdexcept>
 
 //SDL窗体
@@ -16,7 +18,7 @@ void Window::setDrawFunc(const DrawFunc& function) { mDrawFunc = function; }
 //释放
 Window::~Window()
 {
-
+	SDL_DestroyWindow(window);
 }
 
 //事件处理
@@ -79,8 +81,8 @@ WindowPtr Window::createWindow(const char* title, const int width, const int hei
 
 	WindowPtr windowPtr(new Window());
 
-	windowPtr->windowHeight = height;
-	windowPtr->windowWidth = width;
+	windowPtr->mWindowHeight = height;
+	windowPtr->mWindowWidth = width;
 
 	//初始化并创建窗体
 	window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);

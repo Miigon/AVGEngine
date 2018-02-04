@@ -1,11 +1,18 @@
 #pragma once
 
 #include <memory>
-#include <boost/noncopyable.hpp>
 
-class IScene :boost::noncopyable
+class IScene
 {
+protected:
+	IScene() = default;
+
 public:
+	IScene(const IScene&) = delete;
+	IScene(const IScene&&) = delete;
+	IScene& operator=(const IScene&&) = delete;
+	IScene& operator=(const IScene&) = delete;
+
 	//!‰÷»æ
 	virtual void draw() = 0;
 	

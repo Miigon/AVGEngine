@@ -1,9 +1,10 @@
 #pragma once
 
+#include <iostream>
+#include "util/OpenGL.h"
 #include "util/Resource.h"
 #include "util/Window.h"
 #include "scene/IScene.h"
-#include <GL/glew.h>
 
 class Application
 {
@@ -21,7 +22,7 @@ public:
 
 	void mouseMoveEvent(double mouseX, double mouseY)
 	{
-
+		std::cout << mouseX << ";" << mouseY << std::endl;
 	}
 
 	void mouseButtonEvent(double mouseX, double mouseY, bool isLeft, bool isDown)

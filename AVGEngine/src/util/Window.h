@@ -1,10 +1,7 @@
 #pragma once
 
-#include "OpenGL.h"
 #include <memory>
 #include <functional>
-#include <boost/noncopyable.hpp>
-#include <SDL2/SDL.h>
 
 #define TICK_PER_SECOND 50
 
@@ -15,7 +12,7 @@ using WindowPtr= std::shared_ptr<Window>;
  * 负责管理窗体等
  * @note 为了支持移动端不支持捕获键盘事件
  */
-class Window :boost::noncopyable
+class Window
 {
 public:
 	using MouseMoveCallback = std::function<void(double, double)>;
@@ -23,23 +20,28 @@ public:
 	using TickCallback = std::function<void()>;
 	using DrawFunc = std::function<void()>;
 
+	Window(const Window&) = delete;
+	Window(const Window&&) = delete;
+	Window& operator=(const Window&&) = delete;
+	Window& operator=(const Window&) = delete;
+
 private:
 	//事件
 	//鼠标移动
-	Window::MouseMoveCallback mMouseMoveCallback = {};
+	MouseMoveCallback mMouseMoveCallback = {};
 	//鼠标点击
-	Window::MouseButtonCallback mMouseButtonCallback = {};
+	MouseButtonCallback mMouseButtonCallback = {};
 	//tick刷新
-	Window::TickCallback mTickCallback = {};
+	TickCallback mTickCallback = {};
 
 	//绘制函数
-	Window::DrawFunc mDrawFunc;
+	DrawFunc mDrawFunc;
 	
 	//是否应当关闭窗体
 	bool mShouldClose = false;
 
 	//窗体大小
-	int windowHeight, windowWidth;
+	int mWindowHeight = 0, mWindowWidth = 0;
 
 	//刷新事件
 	void poolEvents();
