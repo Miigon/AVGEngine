@@ -25,15 +25,15 @@
     <ClCompile Include="src\util\Texture.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene\Scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\util\Window.h">
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\scene\IScene.h">
-      <Filter>scene</Filter>
-    </ClInclude>
     <ClInclude Include="src\scene\MainMenuScene.h">
       <Filter>scene</Filter>
     </ClInclude>
@@ -47,6 +47,18 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="src\util\OpenGL.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\WidgetContainer.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Widget.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Scene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\DynamicObj.h">
       <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>

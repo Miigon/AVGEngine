@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\AVGEngine.cpp" />
     <ClCompile Include="src\scene\MainMenuScene.cpp" />
+    <ClCompile Include="src\scene\Scene.cpp" />
     <ClCompile Include="src\util\Config.cpp" />
     <ClCompile Include="src\util\Resource.cpp" />
     <ClCompile Include="src\util\Texture.cpp" />
@@ -28,9 +29,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\scene\IScene.h" />
+    <ClInclude Include="src\scene\Scene.h" />
+    <ClInclude Include="src\scene\Widget.h" />
     <ClInclude Include="src\scene\MainMenuScene.h" />
+    <ClInclude Include="src\scene\WidgetContainer.h" />
     <ClInclude Include="src\util\Config.h" />
+    <ClInclude Include="src\util\DynamicObj.h" />
     <ClInclude Include="src\util\OpenGL.h" />
     <ClInclude Include="src\util\Resource.h" />
     <ClInclude Include="src\util\Texture.h" />

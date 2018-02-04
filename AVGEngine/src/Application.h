@@ -4,7 +4,7 @@
 #include "util/OpenGL.h"
 #include "util/Resource.h"
 #include "util/Window.h"
-#include "scene/IScene.h"
+#include "scene/Scene.h"
 
 class Application
 {
@@ -12,7 +12,7 @@ class Application
 	WindowPtr mWindow;
 
 	//场景
-	IScenePtr mScene;
+	ScenePtr mScene;
 
 public:
 	void draw()
@@ -59,7 +59,7 @@ public:
 	/*!运行程序
 	 * @param startScene 开始时显示的场景
 	 */
-	void run(const IScenePtr& startScene)
+	void run(const ScenePtr& startScene)
 	{
 		mScene = startScene;
 		mWindow->joinLoop();

@@ -27,7 +27,17 @@ ConfigPtr Config::loadConfig(const char* fileName)
 
 			//read value
 			std::string value;
-			file >> value;
+			
+			while (buffer != '\n' && !file.eof())
+			{
+				file.read(&buffer, 1);
+				if (buffer == ' ' && value.empty())
+					continue;
+				if (buffer == '\n')
+					break;
+
+				value += buffer;
+			}
 
 			//add to map
 			config->mValueMap[valueName] = value;

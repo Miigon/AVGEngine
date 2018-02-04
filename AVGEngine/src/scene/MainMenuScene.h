@@ -1,17 +1,11 @@
 #pragma once
 
-#include "IScene.h"
-#include "../util/Config.h"
-#include "../util/Texture.h"
+#include "Scene.h"
 
-class MainMenuScene :public IScene
+class MainMenuScene :public Scene
 {
-	Config* mSceneConfig;
-	Texture* mBackGroundTexture;
-
 public:
 	MainMenuScene();
 
-	void draw() override;
 	void tick() override;
 };

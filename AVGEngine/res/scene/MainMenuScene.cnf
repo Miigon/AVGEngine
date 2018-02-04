@@ -1,1 +1,3 @@
-background = res.image.MainMenuBackground.png
+backgroundColor.r = 0.3
+backgroundColor.g = 0.5
+backgroundColor.b = 0.1
