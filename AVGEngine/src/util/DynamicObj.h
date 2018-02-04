@@ -9,7 +9,7 @@ class DynamicObj
 public:
 	enum FieldType
 	{
-		FieldInt,FieldDouble,FieldBool,FieldString
+		FieldInt,FieldDouble,FieldBool,FieldString,FieldRaw
 	};
 
 private:
@@ -107,6 +107,12 @@ public:
 		return *reinterpret_cast<bool*>(field.second);
 	}
 
+	void* get(const std::string& name) const
+	{
+		const auto& field = ckeckFieldConst(name, FieldRaw);
+		return field.second;
+	}
+
 	std::string getString(const std::string& name) const
 	{
 		const auto& field = ckeckFieldConst(name, FieldString);
@@ -139,5 +145,11 @@ public:
 		auto& field = ckeckField(name, FieldString);
 		delete reinterpret_cast<std::string*>(field.second);
 		field.second = new std::string(value);
+	}
+
+	void setField(const std::string& name, void* value)
+	{
+		auto& field = ckeckField(name, FieldRaw);
+		field.second = value;
 	}
 };

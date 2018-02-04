@@ -23,8 +23,11 @@ ConfigPtr Config::loadConfig(std::stringstream& configStr)
 		if ((buffer == '{' || buffer == '}') && valueName.empty())
 			continue;
 		//抛弃注释行
-		if (buffer == '#'&& valueName.empty())
-			configStr.getline(nullptr, 0);
+		if (buffer == '#' && valueName.empty())
+		{
+			while(buffer != '\n' && !configStr.eof())
+				configStr.read(&buffer, 1);
+		}
 		//新的一行
 		if (buffer == '\n')
 		{

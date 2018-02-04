@@ -1,6 +1,7 @@
 backgroundColor.r = 0.3
 backgroundColor.g = 0.5
 backgroundColor.b = 0.1
+#注释
 widgetContainer = {
 	test = 1.0
 	testControl = 
