@@ -25,9 +25,9 @@ public:
 		std::cout << mouseX << ";" << mouseY << std::endl;
 	}
 
-	void mouseButtonEvent(double mouseX, double mouseY, bool isLeft, bool isDown)
+	void mouseButtonEvent(double mouseX, double mouseY, int buttom, int stage)
 	{
-
+		std::cout << buttom << ";" << stage << ";" << mouseX << ";" << mouseY << std::endl;
 	}
 	
 	void tickEvent()
@@ -43,9 +43,9 @@ public:
 		//ÉèÖÃ»Øµ÷
 		mWindow->setDrawFunc([&]() { draw(); });
 		mWindow->setMouseMoveCallback([&](double mouseX, double mouseY) { mouseMoveEvent(mouseX, mouseY); });
-		mWindow->setMouseButtonCallback([&](double mouseX, double mouseY, bool isLeft, bool isDown)
+		mWindow->setMouseButtonCallback([&](double mouseX, double mouseY, int buttom, int stage)
 		{
-			mouseButtonEvent(mouseX, mouseY, isLeft, isDown);
+			mouseButtonEvent(mouseX, mouseY, buttom, stage);
 		});
 		mWindow->setTickCallback([&]() { tickEvent(); });
 

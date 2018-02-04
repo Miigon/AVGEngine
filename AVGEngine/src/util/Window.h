@@ -16,7 +16,7 @@ class Window
 {
 public:
 	using MouseMoveCallback = std::function<void(double, double)>;
-	using MouseButtonCallback = std::function<void(double, double, bool, bool)>;
+	using MouseButtonCallback = std::function<void(double, double, int, int)>;
 	using TickCallback = std::function<void()>;
 	using DrawFunc = std::function<void()>;
 

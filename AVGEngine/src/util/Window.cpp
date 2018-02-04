@@ -36,11 +36,21 @@ void Window::poolEvents()
 			break;
 		//鼠标移动
 		case SDL_MOUSEMOTION:
-			mMouseMoveCallback(sdlEvent.button.x, sdlEvent.button.y);
+			mMouseMoveCallback(static_cast<double>(sdlEvent.button.x) / mWindowWidth,
+			                   1 - static_cast<double>(sdlEvent.button.y) / mWindowHeight);
 			break;
 		//鼠标点击
 		case SDL_MOUSEBUTTONDOWN:
-			mMouseButtonCallback(sdlEvent.button.x, sdlEvent.button.y, sdlEvent.button.button, sdlEvent.button.state);
+			mMouseButtonCallback(static_cast<double>(sdlEvent.button.x) / mWindowWidth,
+			                     1 - static_cast<double>(sdlEvent.button.y) / mWindowHeight, 
+								 sdlEvent.button.button,
+			                     sdlEvent.button.state);
+			break;
+		case SDL_MOUSEBUTTONUP:
+			mMouseButtonCallback(static_cast<double>(sdlEvent.button.x) / mWindowWidth,
+			                     1 - static_cast<double>(sdlEvent.button.y) / mWindowHeight, 
+								 sdlEvent.button.button,
+			                     sdlEvent.button.state);
 			break;
 		default:
 			break;
