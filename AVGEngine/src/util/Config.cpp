@@ -64,12 +64,12 @@ ConfigPtr Config::loadConfig(std::stringstream& configStr)
 				else if (buffer == '}')
 					--braceCount;
 
-				//退出循环判断
+				//判断是否读完变量的值
 				if ((!braceCount && buffer == '\n' && !value.empty()) || configStr.eof())
 					break;
 
-				//丢弃非法字符
-				if (buffer != ' ' && buffer != '\t' && buffer != '\r')
+				//丢弃非法字符（\r为windows下换行符）
+				if (buffer != '\t' && buffer != '\r')
 					value += buffer;
 			}
 

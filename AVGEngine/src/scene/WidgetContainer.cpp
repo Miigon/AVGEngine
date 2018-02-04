@@ -20,8 +20,9 @@ void WidgetContainer::init(const Config& containerConfig)
 		else if (tag == "[Label]")
 		{
 			auto label = std::make_shared<Label>();
+			label->name = CONFIG_NOTAG(config.first);
 			label->init(*containerConfig.getAsConfig(config.first));
-			mWidgets.push_back(label);
+			widgets.push_back(label);
 		}
 		//自定义控件类型
 		else
@@ -30,8 +31,9 @@ void WidgetContainer::init(const Config& containerConfig)
 			{
 				auto widgetTypeName = tag.substr(1, tag.size() - 2);
 				auto customWidget = std::make_shared<CustomWidget>(*Resource::getConfig(widgetTypeName.c_str()));
+				customWidget->name = CONFIG_NOTAG(config.first);
 				customWidget->init(*containerConfig.getAsConfig(config.first));
-				mWidgets.push_back(customWidget);
+				widgets.push_back(customWidget);
 			}
 			catch(std::exception& e)
 			{

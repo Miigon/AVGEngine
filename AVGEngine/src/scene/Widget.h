@@ -35,4 +35,7 @@ public:
 	* @note 可能会因性能问题时间出现问题
 	*/
 	virtual void tick() {}
+
+	//!控件名称
+	std::string name;
 };

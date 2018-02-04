@@ -18,6 +18,16 @@
 		return std::string("");\
 	}()
 
+#define CONFIG_NOTAG(in) [&]()\
+	{\
+		std::string configName(in);\
+		if (configName[0] != '[') return in;\
+		else \
+			for (auto& c : configName)\
+				if (c == ']') return std::string((&c) + 1);\
+		return std::string("");\
+	}()
+
 class Config;
 
 using ConfigPtr = std::shared_ptr<Config>;

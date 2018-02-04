@@ -6,4 +6,9 @@
 	{
 		caption = $(text)
 	}
+	[res.widget.Dialog.cnf]dialog1 = 
+	{
+		text = $(text)
+		text2 = $(text2)
+	}
 }

@@ -6,4 +6,8 @@
 	{
 		caption = $(text)
 	}
+	[Label]label2 = 
+	{
+		caption = $(text2)
+	}
 }

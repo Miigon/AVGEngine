@@ -1,0 +1,17 @@
+[Scene] =
+	{
+	#创建并初始化控件容器
+	[WidgetContainer] = 
+	{
+		[Label]label1 = 
+		{
+			caption = Test Data [] {} =
+		}
+		#自定义的控件的基类都是WidgetContainer
+		[res.widget.Dialog.cnf]dialog1 =
+		{
+			text = Test!
+			text2 = Value 2
+		}
+	}
+}
