@@ -5,16 +5,13 @@
 
 class WidgetContainer :public Widget
 {
-	std::vector<Widget> mWidgets;
+	std::vector<std::shared_ptr<Widget>> mWidgets;
 
 public:
-	template <class T> T& addWidget()
-	{
-		mWidgets.emplace_back(T());
-	}
-
 	void onClick(double mouseX, double mouseY) override
 	{
 		
 	}
+
+	void init(const Config& containerConfig) override;
 };

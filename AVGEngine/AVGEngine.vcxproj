@@ -20,8 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AVGEngine.cpp" />
+    <ClCompile Include="src\scene\CustonWidget.cpp" />
     <ClCompile Include="src\scene\MainMenuScene.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
+    <ClCompile Include="src\scene\WidgetContainer.cpp" />
     <ClCompile Include="src\util\Config.cpp" />
     <ClCompile Include="src\util\Resource.cpp" />
     <ClCompile Include="src\util\Texture.cpp" />
@@ -29,6 +31,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\scene\CustomWidget.h" />
+    <ClInclude Include="src\scene\Label.h" />
     <ClInclude Include="src\scene\Scene.h" />
     <ClInclude Include="src\scene\Widget.h" />
     <ClInclude Include="src\scene\MainMenuScene.h" />

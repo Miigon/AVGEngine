@@ -1,11 +1,16 @@
-backgroundColor.r = 0.3
-backgroundColor.g = 0.5
-backgroundColor.b = 0.1
-#注释
-widgetContainer = {
-	test = 1.0
-	testControl = 
+[Scene] =
 	{
-		test2 = 1.0
+	#创建并初始化控件容器
+	[WidgetContainer] = 
+	{
+		[Label]label1 = 
+		{
+			caption = 123
+		}
+		#自定义的控件的基类都是WidgetContainer
+		[res.widget.Dialog.cnf]dialog1 =
+		{
+			text = Test!
+		}
 	}
 }

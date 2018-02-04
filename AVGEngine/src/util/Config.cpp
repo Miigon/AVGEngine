@@ -22,24 +22,28 @@ ConfigPtr Config::loadConfig(std::stringstream& configStr)
 		//抛弃大括号
 		if ((buffer == '{' || buffer == '}') && valueName.empty())
 			continue;
+		
 		//抛弃注释行
-		if (buffer == '#' && valueName.empty())
+		if (buffer == '#')
 		{
+			if (!valueName.empty())
+				throw(std::invalid_argument(std::string("Wrong note at ") + std::to_string(configStr.tellg())));
+
 			while(buffer != '\n' && !configStr.eof())
 				configStr.read(&buffer, 1);
+
+			continue;
 		}
-		//新的一行
-		if (buffer == '\n')
-		{
-			if (valueName.empty())
-				continue;
-			throw(std::invalid_argument(std::string("Wrong config file") + configStr.getloc().c_str()));
-		}
+		
+		//警告字符
+		if (buffer == ' ' || buffer == '\t' || buffer == '\r' || buffer == '\n')
+			continue;
+
 		//变量名和值的分割符
 		if (buffer == '=')
 		{
 			if (valueName.empty())
-				throw(std::invalid_argument(std::string("Failed to read file at line") + std::to_string(configStr.tellg())));
+				throw(std::invalid_argument(std::string("Failed to read file at ") + std::to_string(configStr.tellg())));
 
 			//读取值
 			std::string value;
@@ -72,9 +76,21 @@ ConfigPtr Config::loadConfig(std::stringstream& configStr)
 			//add to map
 			config->mValueMap[valueName] = value;
 			valueName = "";
+
+			continue;
 		}
-		else if (buffer != ' ' && buffer != '\t' && buffer != '\r')
-			valueName += buffer;
+
+		//非法字符(a-z A-Z 0-9 [ ] .)
+		if (!((buffer < 123 && buffer > 96) || //a-z
+			(buffer < 91 && buffer > 64) || //A-Z
+			(buffer < 58 && buffer > 47) || //0-9
+			(buffer == '[' || buffer == ']') || //[ and ]
+			(buffer == '.')				   //.
+			))
+			throw(std::invalid_argument(std::string("Wrong data at ") + std::to_string(configStr.tellg())));
+
+		//更改变量名
+		valueName += buffer;
 	}
 
 	return config;

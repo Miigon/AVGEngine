@@ -89,34 +89,34 @@ public:
 		mFields[name] = std::make_pair(type, dataPtr);
 	}
 	
-	int getInt(const std::string& name) const
+	int& getInt(const std::string& name) const
 	{
 		const auto& field = ckeckFieldConst(name, FieldInt);
 		return *reinterpret_cast<int*>(field.second);
 	}
 
-	double getDouble(const std::string& name) const
+	double& getDouble(const std::string& name) const
 	{
 		const auto& field = ckeckFieldConst(name, FieldDouble);
 		return *reinterpret_cast<double*>(field.second);
 	}
 
-	bool getBool(const std::string& name) const
+	bool& getBool(const std::string& name) const
 	{
 		const auto& field = ckeckFieldConst(name, FieldBool);
 		return *reinterpret_cast<bool*>(field.second);
+	}
+
+	std::string& getString(const std::string& name) const
+	{
+		const auto& field = ckeckFieldConst(name, FieldString);
+		return *reinterpret_cast<std::string*>(field.second);
 	}
 
 	void* get(const std::string& name) const
 	{
 		const auto& field = ckeckFieldConst(name, FieldRaw);
 		return field.second;
-	}
-
-	std::string getString(const std::string& name) const
-	{
-		const auto& field = ckeckFieldConst(name, FieldString);
-		return *reinterpret_cast<std::string*>(field.second);
 	}
 
 	void setField(const std::string& name, const int value)
@@ -151,5 +151,10 @@ public:
 	{
 		auto& field = ckeckField(name, FieldRaw);
 		field.second = value;
+	}
+
+	bool hasField(const std::string& name)
+	{
+		return mFields.find(name) != mFields.end();
 	}
 };

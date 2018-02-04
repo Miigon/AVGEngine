@@ -3,62 +3,31 @@
 
 void Scene::draw()
 {
-	glClearColor(static_cast<float>(getDouble("backgroundColor.r")), 
-				 static_cast<float>(getDouble("backgroundColor.g")),
-				 static_cast<float>(getDouble("backgroundColor.b")), 1.0f);
+	glClearColor(0.0f, 
+				 0.5f,
+				 0.3f, 1.0f);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Scene::init(const Config& sceneConfig)
+void Scene::init(const Config& config)
 {
-	//初始化控件容器
-	auto testConfig = sceneConfig.getAsConfig("widgetContainer");
+	//初始化控件容器]
+	const auto sceneConfig = config.getAsConfig("[Scene]");
 
-	//初始化动态变量
-	for (auto& field : getFields())
+	for (const auto& conf : sceneConfig->getConfigsConst())
 	{
-		switch (field.second.first)
-		{
-		case FieldInt:
-			
-			try
-			{
-				auto* old = reinterpret_cast<int*>(field.second.second);
-				field.second.second = new int(sceneConfig.getAsInt(field.first));
-				delete old;
-			}
-			catch(std::exception&){}
-			break;
-		case FieldBool:
-			try
-			{
-				auto* old = reinterpret_cast<int*>(field.second.second);
-				field.second.second = new bool(sceneConfig.getAsBool(field.first));
-				delete old;
-			}
-			catch (std::exception&) {}
-			break;
-		case FieldDouble:
-			try
-			{
-				auto* old = reinterpret_cast<int*>(field.second.second);
-				field.second.second = new double(sceneConfig.getAsDouble(field.first));
-				delete old;
-			}
-			catch (std::exception&) {}
-			break;
-		case FieldString:
-			try
-			{
-				auto* old = reinterpret_cast<int*>(field.second.second);
-				field.second.second = new std::string(sceneConfig.getAsString(field.first));
-				delete old;
-			}
-			catch (std::exception&) {}
-			break;
-		default:
-			break;
-		}
+		const auto tag = CONFIG_TAG(conf.first);
+
+		if (tag.empty())
+			continue;
+
+		//初始化控件容器
+		if (tag == "[WidgetContainer]")
+			WidgetContainer::init(*sceneConfig->getAsConfig(conf.first));
+
+		//初始化控件
+		if (tag == "[Widget]")
+			WidgetContainer::init(*sceneConfig->getAsConfig(conf.first));
 	}
 }

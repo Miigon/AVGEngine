@@ -4,17 +4,30 @@
 #include <string>
 #include <memory>
 
+#define CONFIG_TAG(in) [&]()\
+	{\
+		std::string configName(in);\
+		std::string buffer; \
+		if (configName[0] != '[') return std::string("");\
+		else \
+			for (auto& c : configName)\
+			{\
+				buffer += c;\
+				if (c == ']') return buffer;\
+			}\
+		return std::string("");\
+	}()
+
 class Config;
 
 using ConfigPtr = std::shared_ptr<Config>;
 
 class Config
 {
+	//key,data
 	std::map<std::string, std::string> mValueMap;
 
 	Config() = default;
-
-	static ConfigPtr loadConfig(std::stringstream&);
 
 public:
 	~Config() = default;
@@ -26,6 +39,8 @@ public:
 
 	//!加载配置文件
 	static ConfigPtr loadConfig(const char* fileName, int offset = 0);
+	//!加载配置文件
+	static ConfigPtr loadConfig(std::stringstream&);
 
 	//!获取配置
 	bool has(const std::string& key) const { return mValueMap.find(key) == mValueMap.end(); }
@@ -56,4 +71,10 @@ public:
 
 		return value == "TRUE";
 	}
+
+	/*!获取所有配置
+	* @note 请不要轻易使用此方法
+	*/
+	std::map<std::string, std::string>& getConfigs() { return mValueMap; }
+	const std::map<std::string, std::string>& getConfigsConst() const { return mValueMap; }
 };
