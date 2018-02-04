@@ -4,7 +4,7 @@
 MainMenuScene::MainMenuScene()
 {
 	//≥ı ºªØ≈‰÷√
-	init(*Resource::getConfig("res.scene.MainMenuScene.cnf"));
+	Scene::init(*Resource::getConfig("res.scene.MainMenuScene.cnf"));
 }
 
 void MainMenuScene::tick()

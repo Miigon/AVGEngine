@@ -18,7 +18,7 @@ public:
 	virtual ~Scene() = default;
 
 	//”√config≥ı ºªØScene
-	void init(const Config& sceneConfig);
+	void init(const Config& sceneConfig) override;
 };
 
 using ScenePtr = std::shared_ptr<Scene>;

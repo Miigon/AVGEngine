@@ -12,6 +12,10 @@ void Scene::draw()
 
 void Scene::init(const Config& sceneConfig)
 {
+	//初始化控件容器
+	auto testConfig = sceneConfig.getAsConfig("widgetContainer");
+
+	//初始化动态变量
 	for (auto& field : getFields())
 	{
 		switch (field.second.first)

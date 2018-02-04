@@ -14,6 +14,8 @@ class Config
 
 	Config() = default;
 
+	static ConfigPtr loadConfig(std::stringstream&);
+
 public:
 	~Config() = default;
 
@@ -23,7 +25,7 @@ public:
 	Config& operator=(const Config&) = delete;
 
 	//!加载配置文件
-	static ConfigPtr loadConfig(const char* fileName);
+	static ConfigPtr loadConfig(const char* fileName, int offset = 0);
 
 	//!获取配置
 	bool has(const std::string& key) const { return mValueMap.find(key) == mValueMap.end(); }
@@ -41,6 +43,7 @@ public:
 	int getAsLong(const std::string& key) const { return std::stol(get(key)); }
 	float getAsFloat(const std::string& key) const { return std::stof(get(key)); }
 	double getAsDouble(const std::string& key) const { return std::stod(get(key)); }
+	ConfigPtr getAsConfig(const std::string& key) const;
 	double getAsBool(const std::string& key) const
 	{
 		auto value = get(key);

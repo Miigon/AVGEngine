@@ -1,5 +1,6 @@
 #pragma once
 #include "../util/DynamicObj.h"
+#include "../util/Config.h"
 
 class Widget :protected DynamicObj
 {
@@ -21,6 +22,12 @@ public:
 	}
 
 	virtual ~Widget() = default;
+
+	/*!初始化控件
+	 * 通过配置文件来初始化控件
+	 * @note config 配置文件
+	 */
+	virtual void init(const Config& config) = 0;
 
 	/*!点击事件
 	 * @param mouseX 点击位置相对于控件横坐标

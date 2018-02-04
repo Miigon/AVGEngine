@@ -1,3 +1,10 @@
 backgroundColor.r = 0.3
 backgroundColor.g = 0.5
 backgroundColor.b = 0.1
+widgetContainer = {
+	test = 1.0
+	testControl = 
+	{
+		test2 = 1.0
+	}
+}
