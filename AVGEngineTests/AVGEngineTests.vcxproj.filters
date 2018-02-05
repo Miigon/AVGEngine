@@ -98,5 +98,8 @@
     <ClCompile Include="..\AVGEngine\src\util\Window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\AVGEngine\src\scene\Widget.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -23,6 +23,7 @@
     <ClCompile Include="src\scene\CustonWidget.cpp" />
     <ClCompile Include="src\scene\MainMenuScene.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
+    <ClCompile Include="src\scene\Widget.cpp" />
     <ClCompile Include="src\scene\WidgetContainer.cpp" />
     <ClCompile Include="src\util\Config.cpp" />
     <ClCompile Include="src\util\Resource.cpp" />

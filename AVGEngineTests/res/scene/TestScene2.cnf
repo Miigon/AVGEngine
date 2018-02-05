@@ -1,12 +1,9 @@
 [Scene] =
-	{
+{
 	#创建并初始化控件容器
 	[WidgetContainer] = 
 	{
-		[Label]label1 = 
-		{
-			caption = Test Data [] {} =
-		}
+		[Label]label1 = {caption = "Label 1" }
 		#自定义的控件的基类都是WidgetContainer
 		[res.widget.DialogComplex.cnf]dialog1 =
 		{

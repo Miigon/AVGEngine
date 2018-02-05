@@ -119,6 +119,15 @@ public:
 		return field.second;
 	}
 
+	FieldType getType(const std::string& name) const
+	{
+		const auto result = mFields.find(name);
+		if (result == mFields.end())
+			throw(std::invalid_argument(std::string("Field ") + name + " isn't existed"));
+
+		return result->second.first;
+	}
+
 	void setField(const std::string& name, const int value)
 	{
 		auto& field = ckeckField(name, FieldInt);

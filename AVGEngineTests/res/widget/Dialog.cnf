@@ -2,12 +2,12 @@
 {
 	#在自定义控件中可以使用自定义的变量
 	#变量引用请使用$(VauleName)
-	[Label]label1 = 
+	[Label]dialogLabel1 = 
 	{
-		caption = $(text)
+		caption = $(label1Caption)
 	}
-	[Label]label2 = 
+	[Label]dialogLabel2 = 
 	{
-		caption = $(text2)
+		caption = $(label2Caption)
 	}
 }

@@ -1,0 +1,40 @@
+[Scene]={
+[WidgetContainer] = 
+{[Label]
+label1 =
+{
+caption=Label 1}
+[Label] label2
+={
+pos.x=1.0f
+#多行String
+caption = 
+{
+Line 1
+Line 2}
+}
+
+[Label] label3
+=
+{
+
+#引号1
+caption = 
+"Line 1
+Line 2"}
+
+[Label] label4
+=
+{
+
+#引号2
+caption = "\""
+}
+
+[Label] label5
+=
+{
+
+#引号3
+caption = "\"Test\""}}
+}

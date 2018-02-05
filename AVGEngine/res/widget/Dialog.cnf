@@ -4,6 +4,9 @@
 	#变量引用请使用$(VauleName)
 	[Label]label1 = 
 	{
-		caption = $(text)
+		[Widget] =
+		{
+			caption = $(text)
+		}
 	}
 }

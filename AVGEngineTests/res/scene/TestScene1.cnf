@@ -1,17 +1,41 @@
+# 简单的测试
 [Scene] =
-	{
-	#创建并初始化控件容器
+{
+	# 初始化基类
+	# 当有多个基类的时候（包括基类的基类等）
+	# 需要明确是哪个基类在初始化
 	[WidgetContainer] = 
 	{
+		# 创建一个Label对象label1
 		[Label]label1 = 
 		{
+			# 当只有一个基类的时候可以直接初始化
+			# 基本上所有内置类型都只有一个基类
+			# 可以省略掉[Widget]标签
+			# 注意：请勿在变量的值中加入大括号
+			# 否则有机会出现错误
 			caption = Test Data [] {} =
 		}
-		#自定义的控件的基类都是WidgetContainer
+		
+		# 创建一个Label对象label2
+		[Label]label2 = 
+		{
+			# 不省略[Widget]标签
+			[Widget] =
+			{
+				caption = label 2
+			}
+		}
+		
+		# 自定义的控件的基类都是WidgetContainer
+		# 但是不需要标签可以直接初始化
+		# 因为我们可以把它当作内置类型
 		[res.widget.Dialog.cnf]dialog1 =
 		{
-			text = Test!
-			text2 = Value 2
+			# 自定义类型的基类也只有一个Widget
+			# 所以可以省略掉[Widget]标签
+			label1Caption = Label 1
+			label2Caption = Label 2
 		}
 	}
 }

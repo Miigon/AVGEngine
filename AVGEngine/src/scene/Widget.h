@@ -1,7 +1,8 @@
 #pragma once
 #include "../util/Config.h"
+#include "../util/DynamicObj.h"
 
-class Widget
+class Widget :public DynamicObj
 {
 public:
 	Widget(const Widget&) = delete;
@@ -9,15 +10,15 @@ public:
 	Widget& operator=(const Widget&&) = delete;
 	Widget& operator=(const Widget&) = delete;
 
-	Widget() = default;
+	Widget();
 
 	virtual ~Widget() = default;
 
 	/*!初始化控件
-	 * 通过配置文件来初始化控件
+	 * 通过配置文件来初始化控件的属性
 	 * @note config 配置文件
 	 */
-	virtual void init(const Config& config) {}
+	virtual void init(const Config& config);
 
 	/*!点击事件
 	 * @param mouseX 点击位置相对于控件横坐标

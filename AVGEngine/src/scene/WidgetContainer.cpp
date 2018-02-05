@@ -19,10 +19,17 @@ void WidgetContainer::init(const Config& containerConfig)
 		//内置控件类型
 		else if (tag == "[Label]")
 		{
-			auto label = std::make_shared<Label>();
-			label->name = CONFIG_NOTAG(config.first);
-			label->init(*containerConfig.getAsConfig(config.first));
-			widgets.push_back(label);
+			try
+			{
+				auto label = std::make_shared<Label>();
+				label->name = CONFIG_NOTAG(config.first);
+				label->init(*containerConfig.getAsConfig(config.first));
+				widgets.push_back(label);
+			}
+			catch (std::exception& e)
+			{
+				throw(std::runtime_error(std::string("Failed to create custon widget besause ") + e.what()));
+			}
 		}
 		//自定义控件类型
 		else

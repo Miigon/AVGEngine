@@ -38,6 +38,7 @@ class Config
 	std::map<std::string, std::string> mValueMap;
 
 	Config() = default;
+	static std::string readValue(std::stringstream& stream);
 
 public:
 	~Config() = default;
@@ -53,7 +54,7 @@ public:
 	static ConfigPtr loadConfig(std::stringstream&);
 
 	//!ªÒ»°≈‰÷√
-	bool has(const std::string& key) const { return mValueMap.find(key) == mValueMap.end(); }
+	bool has(const std::string& key) const { return mValueMap.find(key) != mValueMap.end(); }
 	std::string get(const std::string& key) const
 	{
 		const auto result = mValueMap.find(key);

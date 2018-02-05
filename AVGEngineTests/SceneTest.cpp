@@ -9,6 +9,35 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace avg_engine_tests
 {
+	class TestScene : protected Scene
+	{
+	public:
+		TestScene()
+		{
+ 			Scene::init(*Resource::getConfig("res.scene.TestScene.cnf"));
+		}
+
+		void checkWidgetContainer() const
+		{
+			const auto label1 = findWidget<CustomWidget>("label1");
+			const auto label2 = findWidget<CustomWidget>("label2");
+			const auto label3 = findWidget<CustomWidget>("label3");
+			const auto label4 = findWidget<CustomWidget>("label4");
+			const auto label5 = findWidget<CustomWidget>("label5");
+			
+			const auto c1 = label1->getString("caption");
+			const auto c2 = label2->getString("caption");
+			const auto c3 = label3->getString("caption");
+			const auto c4 = label4->getString("caption");
+			const auto c5 = label5->getString("caption");
+
+			if (c1 != "Label 1" || label2->getDouble("pos.x") != 1.0f ||
+				c2 != "Line 1\nLine 2" || c3 != "Line 1\nLine 2" ||
+				c4 != "\"" || c5 != "\"Test\"")
+				Assert::Fail(L"Failed to set label data");
+		}
+	};
+
 	class TestScene1 : protected Scene
 	{
 	public:
@@ -17,31 +46,21 @@ namespace avg_engine_tests
 			Scene::init(*Resource::getConfig("res.scene.TestScene1.cnf"));
 		}
 
-		void checkWidgetContainer()
+		void checkWidgetContainer() const
 		{
-			for (const auto& w : widgets)
-			{
-				if (w->name == "label1")
-				{
-					Label& label = *reinterpret_cast<Label*>(w.get());
-					if (label.caption != "Test Data [] {} =")
-						Assert::Fail(L"Failed to load label1");
-				}
-				else if (w->name == "dialog1")
-				{
-					CustomWidget& customWidget = *reinterpret_cast<CustomWidget*>(w.get());
+			const auto label1 = findWidget<CustomWidget>("label1");
+			const auto label2 = findWidget<CustomWidget>("label2");
 
-					for (const auto& w2 : customWidget.widgets)
-					{
-						Label& label = *reinterpret_cast<Label*>(w2.get());
-						if (!(
-							(label.caption != "Test!" && label.name != "label1") ||
-							(label.caption != "Value 2" && label.name != "label2")
-							))
-							Assert::Fail(L"Failed to load label in dialog1");
-					}
-				}
-			}
+			if (label1->getString("caption") != "Test Data [] {} =" || label2->getString("caption") != "label 2")
+				Assert::Fail(L"Failed to set label data");
+
+			const auto dialog1 = findWidget<CustomWidget>("dialog1");
+
+			const auto dialogLabel1 = dialog1->findWidget<Label>("dialogLabel1");
+			const auto dialogLabel2 = dialog1->findWidget<Label>("dialogLabel2");
+
+			if (dialogLabel1->getString("caption") != "Label 1" || dialogLabel2->getString("caption") != "Label 2")
+				Assert::Fail(L"Failed to set dialog data");
 		}
 	};
 	class TestScene2 : protected Scene
@@ -52,34 +71,12 @@ namespace avg_engine_tests
 			Scene::init(*Resource::getConfig("res.scene.TestScene2.cnf"));
 		}
 
-		void checkWidgetContainer()
+		void checkWidgetContainer() const
 		{
-			for (const auto& w : widgets)
-			{
-				if (w->name == "label1")
-				{
-					Label& label = *reinterpret_cast<Label*>(w.get());
-					if (label.caption != "Test Data [] {} =")
-						Assert::Fail(L"Failed to load label1");
-				}
-				else if (w->name == "dialog1")
-				{
-					CustomWidget& customWidget = *reinterpret_cast<CustomWidget*>(w.get());
+			const auto label1 = findWidget<CustomWidget>("label1");
 
-					Label& label1 = *reinterpret_cast<Label*>(widgets[0].get());
-					CustomWidget& dialogDialog1 = *reinterpret_cast<CustomWidget*>(customWidget.widgets[1].get());
-
-					Label& dialogDialog1Label1 = *reinterpret_cast<Label*>(dialogDialog1.widgets[0].get());
-					Label& dialogDialog1Label2 = *reinterpret_cast<Label*>(dialogDialog1.widgets[1].get());
-
-					if (!(
-						(label1.caption == "Test Data [] {} =" && label1.name == "label1") &&
-						(dialogDialog1Label1.caption == "Test!" && dialogDialog1Label1.name == "label1") &&
-						(dialogDialog1Label2.caption == "Value 2" && dialogDialog1Label2.name == "label2")
-						))
-						Assert::Fail(L"Failed to check widget");
-				}
-			}
+			if (label1->getString("caption") != "Label 1" )
+				Assert::Fail(L"Failed to set label data");
 		}
 	};
 
@@ -87,7 +84,14 @@ namespace avg_engine_tests
 	{
 	public:
 		
-		TEST_METHOD(custonWidgetLoadTest)
+		TEST_METHOD(sceneConfigReadTest)
+		{
+			Resource::init();
+			TestScene testScene;
+			testScene.checkWidgetContainer();
+		}
+
+		TEST_METHOD(sceneBasedTest)
 		{
 			Resource::init();
 			TestScene1 testScene;

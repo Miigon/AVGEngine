@@ -34,6 +34,9 @@
     <ClCompile Include="src\scene\CustonWidget.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene\Widget.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\util\Window.h">

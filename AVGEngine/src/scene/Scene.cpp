@@ -12,7 +12,7 @@ void Scene::draw()
 
 void Scene::init(const Config& config)
 {
-	//初始化控件容器]
+	//初始化控件容器
 	const auto sceneConfig = config.getAsConfig("[Scene]");
 
 	for (const auto& conf : sceneConfig->getConfigsConst())
