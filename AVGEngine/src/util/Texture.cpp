@@ -1,5 +1,10 @@
 #include "Texture.h"
+#include <string>
+#ifdef _WIN32
 #include <SDL2/SDL_image.h>
+#else
+#include <SDL_image.h>
+#endif
 #include <stdexcept>
 
 TextureObj Texture::loadTexture(const char* fileName)

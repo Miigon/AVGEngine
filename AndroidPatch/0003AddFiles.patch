@@ -22,6 +22,6 @@
 +LOCAL_SHARED_LIBRARIES := SDL2 libSDL2_image libSDL2_ttf
  
  LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -llog
-+LOCAL_CFLAGS += -std=c++11
++LOCAL_CPPFLAGS += -std=c++11 -fexceptions
  
  include $(BUILD_SHARED_LIBRARY)

@@ -2,8 +2,8 @@ language: android
 android:
     components:
         - build-tools-25.0.2
-        - android-25
-        - sys-img-armeabi-v7a-android-25
+        - android-16
+        - sys-img-armeabi-v7a-android-16
 install:
     - sudo bash InitAndroid.sh
 script: 

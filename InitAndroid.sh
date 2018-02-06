@@ -27,21 +27,19 @@ if [ ! -d "AndroidProject" ]; then
 fi
 
 # 下载NDK
-if [ ! -f "android-ndk-r14b-linux-x86_64.zip" ]; then
-	wget https://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip
+if [ ! -f "android-ndk-r16b-linux-x86_64.zip" ]; then
+	wget https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip
 fi
 
 sudo apt-get install unzip
 
 if [ ! -d "AndroidNDK" ]; then
-	unzip android-ndk-r14b-linux-x86_64.zip > /dev/null 2>&1
-	mv android-ndk-r14b AndroidNDK
+	unzip android-ndk-r16b-linux-x86_64.zip > /dev/null 2>&1
+	mv android-ndk-r16b AndroidNDK
 fi
 
 # ant
 sudo apt-get install ant
-
-ant deps
 
 #打补丁
 for file in AndroidPatch/*
@@ -52,3 +50,7 @@ do
         patch -p0 < $file
     fi
 done
+
+#复制源码
+echo "Copy codes from AVGEngine/src to AndroidProject/jni/src"
+cp -r AVGEngine/src AndroidProject/jni/src
