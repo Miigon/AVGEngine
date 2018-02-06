@@ -2,11 +2,7 @@
 #include "Config.h"
 #include <map>
 #include <string>
-#include <filesystem>
 #include "Texture.h"
-
-using namespace std::experimental::filesystem;
-
 std::map<std::string, std::pair<Resource::ResourceType, std::shared_ptr<void>>> resourceMap;
 
 void Resource::registerResource(const char* key, const std::pair<ResourceType, std::shared_ptr<void>>& value)
@@ -14,8 +10,13 @@ void Resource::registerResource(const char* key, const std::pair<ResourceType, s
 	resourceMap[key] = value;
 }
 
+#ifdef _WIN32
+#include <filesystem>
+
 void Resource::init()
 {
+	using namespace std::experimental::filesystem;
+
 	for (const auto& item : recursive_directory_iterator(path("res/")))
 	{
 		if (is_directory(item.path()))
@@ -49,6 +50,12 @@ void Resource::init()
 			);
 	}
 }
+#else
+void Resource::init()
+{
+
+}
+#endif
 
 Config* Resource::getConfig(const char* name)
 {

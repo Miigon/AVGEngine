@@ -1,6 +1,6 @@
 ## AVGEngine [![AppVeyor tests](https://img.shields.io/appveyor/tests/GScience/AVGEngine.svg)](https://ci.appveyor.com/project/GScience/avgengine/build/tests)
 ### 0. 支持的平台
-项目开发环境和测试环境君为Window，能保证Window下正常运行，其他平台只能保证可以正常编译。
+项目开发环境和测试环境均为Window，能保证Window下正常运行，其他平台只能保证可以正常编译。
 
 [![AppVeyor](https://img.shields.io/appveyor/ci/gscience/avgengine.svg?label=Windows)](https://ci.appveyor.com/project/GScience/avgengine)
 
