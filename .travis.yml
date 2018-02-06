@@ -7,7 +7,7 @@ android:
         - android-16
         - sys-img-armeabi-v7a-android-16
 install:
-    - jdk_switcher use openjdk7
     - sudo bash InitAndroid.sh
 script: 
+    - jdk_switcher use openjdk7
     - sudo bash BuildAndroid.sh
