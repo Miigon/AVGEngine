@@ -1,4 +1,4 @@
-## AVGEngine&nbsp;&nbsp;[![AppVeyor](https://img.shields.io/appveyor/ci/gscience/avgengine.svg?label=Windows)](https://ci.appveyor.com/project/GScience/avgengine) [![AppVeyor tests](https://img.shields.io/appveyor/tests/GScience/AVGEngine.svg)](https://ci.appveyor.com/project/GScience/avgengine/build/tests)
+## AVGEngine&nbsp;&nbsp;[![AppVeyor](https://img.shields.io/appveyor/ci/gscience/avgengine.svg?label=Windows)](https://ci.appveyor.com/project/GScience/avgengine) [![AppVeyor tests](https://img.shields.io/appveyor/tests/GScience/AVGEngine.svg)](https://ci.appveyor.com/project/GScience/avgengine/build/tests) [![Travis](https://img.shields.io/travis/GScience/AVGEngine.svg?label=Android)](https://www.travis-ci.org/GScience/AVGEngine)
 ### 1. 安装
 首先你需要安装好vcpkg，之后我们需要执行以下命令：
 >vcpkg install glew sdl2 sdl2-image

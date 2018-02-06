@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/AndroidNDK
+/AndroidProject
+/android-ndk-r14b-linux-x86_64.zip
+/SDL2-2.0.7.tar.gz
+/SDL2_ttf-2.0.14.tar.gz
+/SDL2_image-2.0.2.tar.gz

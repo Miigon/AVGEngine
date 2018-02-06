@@ -1,0 +1,14 @@
+--- AndroidProject/jni/Application.mk	2018-02-06 17:18:43.822456400 +0800
++++ AndroidProject/jni/Application.mk	2018-02-06 17:24:58.385033100 +0800
+@@ -1,9 +1,9 @@
+ 
+ # Uncomment this if you're using STL in your project
+ # See CPLUSPLUS-SUPPORT.html in the NDK documentation for more information
+-# APP_STL := stlport_static 
++APP_STL := gnustl_static
+ 
+-APP_ABI := armeabi armeabi-v7a x86
++APP_ABI := armeabi-v7a
+ 
+ # Min SDK level
+ APP_PLATFORM=android-10

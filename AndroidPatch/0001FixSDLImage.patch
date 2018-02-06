@@ -1,0 +1,11 @@
+diff -uprN SDL2_image-2.0.2/Android.mk AndroidProject/jni/SDL2_image/Android.mk
+--- AndroidProject/jni/SDL2_image/Android.mk	2017-10-23 23:31:29.000000000 +0800
++++ AndroidProject/jni/SDL2_image/Android.mk	2018-02-06 16:54:59.140357800 +0800
+@@ -53,7 +53,6 @@ LOCAL_SRC_FILES :=  \
+     IMG_tga.c       \
+     IMG_tif.c       \
+     IMG_webp.c      \
+-    IMG_WIC.c       \
+     IMG_xcf.c       \
+     IMG_xpm.c.arm   \
+     IMG_xv.c        \

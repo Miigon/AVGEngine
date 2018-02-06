@@ -1,0 +1,15 @@
+--- AndroidProject/src/org/libsdl/app/SDLActivity.java	2018-02-06 17:36:11.751159100 +0800
++++ AndroidProject/src/org/libsdl/app/SDLActivity.java	2018-02-06 17:38:17.544935200 +0800
+@@ -97,10 +97,10 @@ public class SDLActivity extends Activit
+     protected String[] getLibraries() {
+         return new String[] {
+             "SDL2",
+-            // "SDL2_image",
++            "SDL2_image",
+             // "SDL2_mixer",
+             // "SDL2_net",
+-            // "SDL2_ttf",
++            "SDL2_ttf",
+             "main"
+         };
+     }
