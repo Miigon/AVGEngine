@@ -8,7 +8,7 @@
 ### 1. 安装
 #### a. Windows
 首先你需要安装好vcpkg，并且安装了Visual Studio 2017，之后我们需要执行以下命令：
->vcpkg install glew sdl2 sdl2-image
+>vcpkg install glew sdl2 sdl2-image dirent
 
 如果没有出现就可以正常编译了。
 #### b. Android

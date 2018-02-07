@@ -6,7 +6,7 @@ configuration:
   - Release
 before_build:
   - cmd: vcpkg integrate install
-  - cmd: vcpkg install glew sdl2 sdl2-image
+  - cmd: vcpkg install glew sdl2 sdl2-image dirent
 build:
   project: AVGEngine.sln
   verbosity: minimal
