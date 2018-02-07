@@ -1,0 +1,19 @@
+{
+    "package": {
+        "name": "auto-upload",
+        "repo": "AVGEngine",
+        "subject": "AVGEngine",
+        "desc": "AVGEngine ",
+        "website_url": "www.gscience.cc",
+        "issue_tracker_url": "https://github.com/GScience/AVGEngine/issues",
+        "vcs_url": "https://github.com/GScience/AVGEngine.git",
+        "public_download_numbers": true,
+        "public_stats": false,
+    },
+
+    "files":
+        [
+        {"includePattern": "AndroidProject\bin\SDLActivity-release-unsigned.apk", "uploadPattern": "AndroidProject\bin\AVGEngine.apk"},
+        ],
+    "publish": true
+}
