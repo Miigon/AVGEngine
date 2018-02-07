@@ -1,13 +1,10 @@
 language: android
-jdk: 
-    - openjdk7
 android:
     components:
         - build-tools-25.0.2
         - android-25
-        - sys-img-armeabi-v7a-android-16
+        - sys-img-armeabi-v7a-android-25
 install:
     - sudo bash InitAndroid.sh
 script: 
-    - jdk_switcher use openjdk7
     - sudo bash BuildAndroid.sh
