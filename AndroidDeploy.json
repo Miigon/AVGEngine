@@ -13,7 +13,10 @@
 
     "files":
         [
-        {"includePattern": "AndroidProject\bin\SDLActivity-release-unsigned.apk", "uploadPattern": "bin\AVGEngine.apk"},
+			{
+				"includePattern": "AndroidProject\bin\SDLActivity-release-unsigned.apk", 
+				"uploadPattern": "bin\AVGEngine.apk",
+			}
         ],
     "publish": true,
 }
