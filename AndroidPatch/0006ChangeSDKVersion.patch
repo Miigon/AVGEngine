@@ -1,0 +1,6 @@
+--- AndroidProject/project.properties	2017-10-24 03:27:45.000000000 +0800
++++ AndroidProject/project.properties	2018-02-06 17:50:07.497755700 +0800
+@@ -14,4 +14,4 @@
+
+-target=android-16
++target=android-25
