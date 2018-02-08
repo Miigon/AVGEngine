@@ -8,9 +8,3 @@ install:
 - sudo bash InitAndroid.sh
 script:
 - sudo bash BuildAndroid.sh
-deploy:
-  provider: bintray
-  file: "AndroidDeploy.json"
-  user: "gscience"
-  key:
-    secure: hiZifF/HPWsN04new8WGriuNnYQ34YAmu1/sQXLJcHf0CRVG7pUYfKrbdZrZnV/0dgKqsgyMilRXf01sHxeQ+3ivlmeeo0jrs3Hbormb5/SK5cNS6KHbrZkdtymoeoJ/eCAgJkXTn/lBr/ouUmva2sKCLwb7BUy3xzhYBI0I+DswtpfbQfiONFjZKw7ajWksyzH4v3Ush6lmPRGcOZGIPitw2QEe8PAJIbomWfF+zYS5+MkQLbJkWcEps7yQqOCfkAPqTr1rFIrfy5GLO8M4TkXqATTDPM++ML1M5UfQauNeNLvnLcaWaAzW8CqIJPNIB5HurjYaLDhfjya7KWl4hxo3u2WIjnZaGce0eSdEIghZKBnC4Oano/PJV2YPOMydVkDKiPq57CybX9rm3XmbK/z5G6kIXoSziVZe38MU3DzX8V29AXCq+MWe0AADM/0G+A7DZ/vJ+sn4Sg3UdYrHRGCMquRXBRU/MEv79MDsfOgyEWx/LMy2JEJ7tj4pMuaMresim09KZXTxcugp0LKVYRfS+xtrn2nWxGp3GLo9EdY81/K4pKPpN6VqvwAt2bLX48kT1wtQxJKangZNWP+fVQ4ccfU24oevsfO81bNa0Fb1V+RbIrYt08PhR1U3b9Nu8W6vJbhDUfzEOg97WoA/a4q63J4hlIbNHU17dIkn6ss=
