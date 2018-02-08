@@ -1,7 +1,7 @@
 cd ../
 if [ ! -f "ResBuilder/ResBuilder.jar" ]; then
 	cd ResBuilder
-	./Build.sh    
+	sudo bash Build.sh    
 	cd ../
 fi
 java -jar ResBuilder/ResBuilder.jar Resources res.pk

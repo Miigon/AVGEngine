@@ -1,4 +1,4 @@
-./UpdateResourcePackage.sh
+sudo bash UpdateResourcePackage.sh
 cd ../
 mkdir AndroidProject/assets/
 cp res.pk AndroidProject/assets/res.pk
