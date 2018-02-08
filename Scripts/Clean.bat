@@ -1,3 +1,5 @@
+@echo off
+cd ../
 del SDL2_image-2.0.2.tar.gz
 del SDL2_ttf-2.0.14.tar.gz
 del SDL2-2.0.7.tar.gz
@@ -12,3 +14,4 @@ rd /s /Q AndroidProject
 rd /s /Q Debug
 rd /s /Q Release
 rd /s /Q x64
+cd Scripts

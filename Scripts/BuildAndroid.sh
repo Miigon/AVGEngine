@@ -1,4 +1,5 @@
 ./UpdateResourcePackage.sh
+cd ../
 mkdir AndroidProject/assets/
 cp res.pk AndroidProject/assets/res.pk
 cd AndroidProject
@@ -11,3 +12,4 @@ if [ $? -ne 0 ];then
 	exit 1
 fi
 cd ../
+cd Scripts

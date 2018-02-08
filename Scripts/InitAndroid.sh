@@ -1,3 +1,4 @@
+cd ../
 # 配置安卓下SDL开发环境
 if [ ! -d "AndroidProject" ]; then
 	if [ ! -f "SDL2-2.0.7.tar.gz" ]; then
@@ -54,3 +55,4 @@ done
 #复制源码
 echo "Copy codes from AVGEngine/src to AndroidProject/jni/src"
 cp -r AVGEngine/src AndroidProject/jni/src
+cd Scripts

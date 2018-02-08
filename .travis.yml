@@ -5,6 +5,10 @@ android:
   - android-25
   - sys-img-armeabi-v7a-android-25
 install:
-- sudo bash InitAndroid.sh
+  - cd Scripts
+  - sudo bash InitAndroid.sh
+  - cd ../
 script:
-- sudo bash BuildAndroid.sh
+  - cd Scripts
+  - sudo bash BuildAndroid.sh
+  - cd ../

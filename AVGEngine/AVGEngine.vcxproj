@@ -123,7 +123,7 @@
       <AdditionalDependencies>SDL2Maind.lib;Opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)
+      <Command>cd $(SolutionDir)Scripts
 start /wait UpdateResourcePackage.bat
 copy /y $(SolutionDir)res.pk $(LocalDebuggerWorkingDirectory)res.pk</Command>
     </PostBuildEvent>
@@ -142,7 +142,7 @@ copy /y $(SolutionDir)res.pk $(LocalDebuggerWorkingDirectory)res.pk</Command>
       <AdditionalDependencies>SDL2Maind.lib;Opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)
+      <Command>cd $(SolutionDir)Scripts
 start /wait UpdateResourcePackage.bat
 copy /y $(SolutionDir)res.pk $(LocalDebuggerWorkingDirectory)res.pk</Command>
     </PostBuildEvent>
@@ -165,7 +165,7 @@ copy /y $(SolutionDir)res.pk $(LocalDebuggerWorkingDirectory)res.pk</Command>
       <AdditionalDependencies>SDL2Main.lib;Opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)
+      <Command>cd $(SolutionDir)Scripts
 start /wait UpdateResourcePackage.bat
 copy /y $(SolutionDir)res.pk $(LocalDebuggerWorkingDirectory)res.pk</Command>
     </PostBuildEvent>
@@ -188,7 +188,7 @@ copy /y $(SolutionDir)res.pk $(LocalDebuggerWorkingDirectory)res.pk</Command>
       <AdditionalDependencies>SDL2Main.lib;Opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)
+      <Command>cd $(SolutionDir)Scripts
 start /wait UpdateResourcePackage.bat
 copy /y $(SolutionDir)res.pk $(LocalDebuggerWorkingDirectory)res.pk</Command>
     </PostBuildEvent>
