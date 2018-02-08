@@ -19,7 +19,7 @@
 #define _mkdir(dir) mkdir(dir, 0777)
 #define _access(dir,mode) access(dir, mode)
 #ifdef __ANDROID__
-#define RESOURCE_ROOT_PATH std::string(SDL_AndroidGetInternalStoragePath()) + "/"
+#define RESOURCE_ROOT_PATH (std::string(SDL_AndroidGetInternalStoragePath()) + "/")
 #endif
 #endif
 
@@ -175,7 +175,7 @@ void Resource::init()
 
 	for (const auto& file : files)
 	{
-		auto resKey = file;
+		auto resKey = file.substr(RESOURCE_ROOT_PATH.length());
 
 		for (auto& c : resKey)
 			if (c == '\\' || c == '/')
