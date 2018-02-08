@@ -1,6 +1,11 @@
+#ifdef _WIN32
+#include <SDL2/SDL.h>
+#else
+#include <SDL.h>
+#endif
+#include <iostream>
 #include "Application.h"
 #include "scene/MainMenuScene.h"
-#include <iostream>
 
 int main(int argc, char* argv[])
 {

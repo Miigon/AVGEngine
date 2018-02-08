@@ -48,6 +48,7 @@ public class ResBuilder
 		enumFile(baseFile);
 		
 		System.out.print("Creating package...\n");
+		System.out.print("Package dir: " + baseFile.getAbsolutePath() + "\n");
 		
 		/* Pack File:
 		 * |Pack Head|Package GUID|File Name|File Size(string)|File Data|File Name......l..
@@ -71,7 +72,7 @@ public class ResBuilder
 		for (File file : fileList)
 		{
 			//file name
-			String resName = file.getAbsolutePath().substring(baseFile.getAbsolutePath().length() - 3);
+			String resName = file.getAbsolutePath().substring(baseFile.getAbsolutePath().length() + 1).replace('\\','/');
 			
 			fs.write(resName.getBytes());
 			fs.write('\0');

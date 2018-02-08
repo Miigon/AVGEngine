@@ -90,6 +90,8 @@ void Window::joinLoop()
 //´´½¨´°Ìå
 WindowPtr Window::createWindow(const char* title, const int width, const int height)
 {
+	SDL_Init(SDL_INIT_EVERYTHING);
+
 	if (window != nullptr)
 		throw(std::invalid_argument("An window has already exsited"));
 

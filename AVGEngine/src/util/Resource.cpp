@@ -5,13 +5,24 @@
 #include "Texture.h"
 #include <dirent.h>
 #include <vector>
-#include <SDL2/SDL_rwops.h>
+#include <fstream>
 
 #ifdef _WIN32
-#define RESOURCE_ROOT_PATH
-#elif __ANDROID__
-#define RESOURCE_ROOT_PATH std::string(SDL_AndroidGetInternalStoragePath())
+#include <SDL2/SDL.h>
+#include <direct.h>
+#include <io.h>
+#define RESOURCE_ROOT_PATH std::string("")
+#else
+#include <SDL.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#define _mkdir(dir) mkdir(dir, 0777)
+#define _access(dir,mode) access(dir, mode)
+#ifdef __ANDROID__
+#define RESOURCE_ROOT_PATH std::string(SDL_AndroidGetInternalStoragePath()) + "/"
 #endif
+#endif
+
 std::map<std::string, std::pair<Resource::ResourceType, std::shared_ptr<void>>> resourceMap;
 
 void Resource::registerResource(const char* key, const std::pair<ResourceType, std::shared_ptr<void>>& value)
@@ -34,50 +45,130 @@ void enumFile(const std::string& basePath, std::vector<std::string>& files)
 			enumFile(basePath + "/" + direntPtr->d_name, files);
 	}
 }
-//#ifdef __ANDROID__
-void unpackage()
+
+//! 自动创建目录@param path 目录
+void createDir(const std::string& path)
 {
+	const auto findResult = path.find_last_of('/');
+	if (findResult == std::string::npos)
+	{
+		if (_access(path.c_str(), 0) == -1)
+			_mkdir(path.c_str());
+		return;
+	}
+	const auto newFolderName = path.substr(0, findResult);
+	if (_access(newFolderName.c_str(), 0) == -1)
+		createDir(newFolderName);
+	_mkdir(path.c_str());
+}
+
+//! 解压资源到指定位置@param path 目标路径，需要带"/"
+void unpackage(const std::string& path)
+{
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "注意", "资源包未释放，即将自动解压资源包", nullptr);
+
 	const auto resPackage = SDL_RWFromFile("res.pk", "rb");
 
-	//����ͷ
+	//检查包头
 	char head[2];
-	resPackage->read(resPackage, head, 2, 2);
+	resPackage->read(resPackage, head, 2, 1);
 
 	if (head[0] != 'P' || head[1] != 'K')
-		throw std::runtime_error("Failed to read res package");
+	{
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", "Wrong resource package");
+		throw std::runtime_error("Wrong resource package");
+	}
 
-	//��ȡ���汾
-	char guid[35];
-	resPackage->read(resPackage, guid, 34, 34);
-	guid[34] = 0;
+	//获取包版本
+	char guid[37] = { 0 };
+	resPackage->read(resPackage, guid, 36, 1);
+	guid[36] = 0;
+
+	//遍历
+	while (true)
+	{
+		char buffer;
+
+		//获取文件名
+		auto fileName = path;
+		while (SDL_RWread(resPackage, &buffer, 1, 1))
+		{
+			if (buffer == 0)
+				break;
+			fileName += buffer;
+		}
+
+		//无文件，则跳出循环
+		if (fileName.length() == path.length())
+			break;
+
+		//获取文件大小
+		std::string fileSize;
+		while (true)
+		{
+			if (!SDL_RWread(resPackage, &buffer, 1, 1))
+			{
+				SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", "Wrong resource package");
+				throw std::runtime_error("Wrong resource package");
+			}
+			if (buffer == 0)
+				break;
+			fileSize += buffer;
+		}
+
+		//创建文件
+		createDir(fileName.substr(0, fileName.find_last_of('/')));
+
+		auto file = std::ofstream(fileName, std::ios::binary);
+
+		for (auto i = 0; i < std::stol(fileSize); i++)
+		{
+			if (!SDL_RWread(resPackage, &buffer, 1, 1))
+			{
+				SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", "Wrong resource package");
+				throw std::runtime_error("Wrong resource package");
+			}
+			file << buffer;
+		}
+
+		SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "%s", fileName.c_str());
+	}
+
+	//写入包GUID
+	auto packVersionFile = std::ofstream(path + "res/PackageVersion", std::ios::binary);
+	packVersionFile << guid;
+
+	//关闭
+	SDL_RWclose(resPackage);
 }
-//#endif
 
 void Resource::init()
 {
-//#ifdef __ANDROID__
-	const auto packVersionFile = SDL_RWFromFile("PackageVersion", "rb");
+	auto packVersionFile = std::ifstream(RESOURCE_ROOT_PATH + "res/PackageVersion", std::ios::binary);
 
 	if (!packVersionFile)
-		unpackage();
+		unpackage(RESOURCE_ROOT_PATH);
 	else
 	{
-		char nowGuid[35];
-		packVersionFile->read(packVersionFile, nowGuid, 36, 36);
+		//获取当前资源GUID
+		std::string nowGuid;
+		packVersionFile >> nowGuid;
 		const auto resPackage = SDL_RWFromFile("res.pk", "rb");
-		nowGuid[34] = 0;
 
-		char packageGuid[35];
-		resPackage->read(resPackage, packageGuid, 34, 34);
-		packageGuid[34] = 0;
+		//获取内置资源包GUID
+		char packageGuid[37] = { 0 };
 
-		if (!strcmp(nowGuid, packageGuid))
-			unpackage();
+		if (resPackage)
+		{
+			//跳过包头
+			SDL_RWseek(resPackage, 2, 0);
+			SDL_RWread(resPackage, packageGuid, 36, 1);
+			SDL_RWclose(resPackage);
+		}
 
-		resPackage->close(resPackage);
-		packVersionFile->close(packVersionFile);
+		if (nowGuid != packageGuid && nowGuid != "00000000-0000-0000-0000-000000000000")
+			unpackage(RESOURCE_ROOT_PATH);
 	}
-//#endif
 	std::vector<std::string> files;
 	
 	enumFile(RESOURCE_ROOT_PATH + "res", files);
@@ -90,7 +181,13 @@ void Resource::init()
 			if (c == '\\' || c == '/')
 				c = '.';
 
-		const auto extension = file.substr(file.find_last_of('.'));
+		const auto findResult = file.find_last_of('.');
+
+		//是否有扩展名
+		if (findResult == std::string::npos)
+			continue;
+
+		const auto extension = file.substr(findResult);
 
 		if (extension == ".cnf")
 			registerResource

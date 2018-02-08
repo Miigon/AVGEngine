@@ -1,0 +1,12 @@
+[WidgetContainer]=
+{
+	#在自定义控件中可以使用自定义的变量
+	#变量引用请使用$(VauleName)
+	[Label]label1 = 
+	{
+		[Widget] =
+		{
+			caption = $(text)
+		}
+	}
+}

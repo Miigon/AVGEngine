@@ -1,0 +1,23 @@
+[Scene] =
+	{
+	#创建并初始化控件容器
+	[WidgetContainer] = 
+	{
+		[Label]label1 = 
+		{
+			#初始化Widget的基本信息
+			#一切内置控件的属性都应在这里初始化
+			#自定义控件的属性则不需要在Widget内初始化
+			[Widget] =
+			{
+				caption = 123
+				pos.x=1.0f
+			}
+		}
+		#自定义的控件的基类都是WidgetContainer
+		[res.widget.Dialog.cnf]dialog1 =
+		{
+			text = Test!
+		}
+	}
+}

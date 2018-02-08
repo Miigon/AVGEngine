@@ -1,5 +1,8 @@
+./UpdateResourcePackage.sh
+mkdir AndroidProject/assets/
+cp res.pk AndroidProject/assets/res.pk
 cd AndroidProject
-sudo ./../AndroidNDK/ndk-build
+./../AndroidNDK/ndk-build
 if [ $? -ne 0 ];then
 	exit 1
 fi
