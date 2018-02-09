@@ -5,19 +5,26 @@
 #include "Texture.h"
 #include <dirent.h>
 #include <vector>
+#include <sstream>
 #include <fstream>
 
-#ifdef _WIN32
-#include <SDL2/SDL.h>
-#include <direct.h>
+#ifdef WIN32
 #include <io.h>
+#define avg_mkdir(dir) _mkdir(dir)
+#define avg_access(dir,mode) _access(dir, mode)
+#else
+#include <unistd.h>
+#include <sys/stat.h>
+#define avg_mkdir(dir) mkdir(dir, 0777)
+#define avg_access(dir,mode) access(dir, mode)
+#endif
+
+#ifdef AVG_DESKTOP
+#include <SDL2/SDL.h>
+//#include <direct.h>
 #define RESOURCE_ROOT_PATH std::string("")
 #else
 #include <SDL.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#define _mkdir(dir) mkdir(dir, 0777)
-#define _access(dir,mode) access(dir, mode)
 #ifdef __ANDROID__
 #define RESOURCE_ROOT_PATH (std::string(SDL_AndroidGetInternalStoragePath()) + "/")
 #endif
@@ -52,14 +59,14 @@ void createDir(const std::string& path)
 	const auto findResult = path.find_last_of('/');
 	if (findResult == std::string::npos)
 	{
-		if (_access(path.c_str(), 0) == -1)
-			_mkdir(path.c_str());
+		if (avg_access(path.c_str(), 0) == -1)
+			avg_mkdir(path.c_str());
 		return;
 	}
 	const auto newFolderName = path.substr(0, findResult);
-	if (_access(newFolderName.c_str(), 0) == -1)
+	if (avg_access(newFolderName.c_str(), 0) == -1)
 		createDir(newFolderName);
-	_mkdir(path.c_str());
+	avg_mkdir(path.c_str());
 }
 
 //! 解压资源到指定位置@param path 目标路径，需要带"/"
@@ -68,6 +75,14 @@ void unpackage(const std::string& path)
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "注意", "资源包未释放，即将自动解压资源包", nullptr);
 
 	const auto resPackage = SDL_RWFromFile("res.pk", "rb");
+
+	if(resPackage == nullptr)
+	{
+		std::stringstream ss;
+		ss << "打开资源包失败！错误信息：" << SDL_GetError();
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "错误", ss.str().c_str(), nullptr);
+		exit(1);
+	}
 
 	//检查包头
 	char head[2];

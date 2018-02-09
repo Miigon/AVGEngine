@@ -1,6 +1,7 @@
 #pragma once
+#include "Platform.h"
 
-#ifdef _WIN32
+#ifdef AVG_DESKTOP
 #include <GL/glew.h>
 #else
 #include <SDL_opengles2.h>
