@@ -20,5 +20,6 @@ deploy:
   github-token: $GITHUB_TOKEN
   keep-history: false
   local-dir: GitPage
+  target-branch: AndroidBuild
   on:
-    branch: AndroidBuild
+    branch: master
