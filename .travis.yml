@@ -12,3 +12,13 @@ script:
   - cd Scripts
   - sudo bash BuildAndroid.sh
   - cd ../
+  - mkdir GitPage
+  - cp "AndroidProject/bin/*.apk" "GitPage/"
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: GitPage
+  on:
+    branch: AndroidBuild
