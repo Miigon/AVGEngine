@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AVGEngine.cpp" />
-    <ClCompile Include="src\scene\CustonWidget.cpp" />
+    <ClCompile Include="src\scene\CustomWidget.cpp" />
     <ClCompile Include="src\scene\MainMenuScene.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
     <ClCompile Include="src\scene\Widget.cpp" />

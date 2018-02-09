@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "__split_buffer": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "vector": "cpp"
+    }
+}

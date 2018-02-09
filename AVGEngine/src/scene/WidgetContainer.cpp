@@ -28,7 +28,7 @@ void WidgetContainer::init(const Config& containerConfig)
 			}
 			catch (std::exception& e)
 			{
-				throw(std::runtime_error(std::string("Failed to create custon widget besause ") + e.what()));
+				throw(std::runtime_error(std::string("Failed to create Custom widget because ") + e.what()));
 			}
 		}
 		//自定义控件类型
@@ -44,7 +44,7 @@ void WidgetContainer::init(const Config& containerConfig)
 			}
 			catch(std::exception& e)
 			{
-				throw(std::runtime_error(std::string("Failed to create custon widget besause ") + e.what()));
+				throw(std::runtime_error(std::string("Failed to create Custom widget because ") + e.what()));
 			}
 		}
 	}

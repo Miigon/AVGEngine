@@ -74,7 +74,7 @@
     <ClCompile Include="..\AVGEngine\src\AVGEngine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\AVGEngine\src\scene\CustonWidget.cpp">
+    <ClCompile Include="..\AVGEngine\src\scene\CustomWidget.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\AVGEngine\src\scene\MainMenuScene.cpp">

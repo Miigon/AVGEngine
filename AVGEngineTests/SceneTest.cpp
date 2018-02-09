@@ -98,7 +98,7 @@ namespace avg_engine_tests
 			testScene.checkWidgetContainer();
 		}
 
-		TEST_METHOD(complexCustonWidgetLoadTest)
+		TEST_METHOD(complexCustomWidgetLoadTest)
 		{
 			Resource::init();
 			TestScene2 testScene;
