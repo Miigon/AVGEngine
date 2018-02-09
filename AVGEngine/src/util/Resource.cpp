@@ -22,7 +22,7 @@
 #ifdef AVG_DESKTOP
 #include <SDL2/SDL.h>
 //#include <direct.h>
-#define RESOURCE_ROOT_PATH std::string("")
+#define RESOURCE_ROOT_PATH std::string("res/")
 #else
 #include <SDL.h>
 #ifdef __ANDROID__
@@ -42,14 +42,16 @@ void enumFile(const std::string& basePath, std::vector<std::string>& files)
 	const auto dir = opendir(basePath.c_str());
 	struct dirent *direntPtr;
 
+	if(dir == nullptr) return;
+
 	while ((direntPtr = readdir(dir)) != nullptr)
 	{
 		if (strcmp(direntPtr->d_name, ".") == 0 || strcmp(direntPtr->d_name, "..") == 0)
 			continue;
 		if (direntPtr->d_type == DT_REG)
-			files.push_back(basePath + "/" + direntPtr->d_name);
+			files.push_back(basePath + direntPtr->d_name);
 		else if (direntPtr->d_type == DT_DIR)
-			enumFile(basePath + "/" + direntPtr->d_name, files);
+			enumFile(basePath + direntPtr->d_name + "/", files);
 	}
 }
 
@@ -150,7 +152,7 @@ void unpackage(const std::string& path)
 	}
 
 	//写入包GUID
-	auto packVersionFile = std::ofstream(path + "res/PackageVersion", std::ios::binary);
+	auto packVersionFile = std::ofstream(path + "PackageVersion", std::ios::binary);
 	packVersionFile << guid;
 
 	//关闭
@@ -159,7 +161,7 @@ void unpackage(const std::string& path)
 
 void Resource::init()
 {
-	auto packVersionFile = std::ifstream(RESOURCE_ROOT_PATH + "res/PackageVersion", std::ios::binary);
+	auto packVersionFile = std::ifstream(RESOURCE_ROOT_PATH + "PackageVersion", std::ios::binary);
 
 	if (!packVersionFile)
 		unpackage(RESOURCE_ROOT_PATH);
@@ -186,12 +188,13 @@ void Resource::init()
 	}
 	std::vector<std::string> files;
 	
-	enumFile(RESOURCE_ROOT_PATH + "res", files);
+	enumFile(RESOURCE_ROOT_PATH, files);
 
 	for (const auto& file : files)
 	{
 		auto resKey = file.substr(RESOURCE_ROOT_PATH.length());
 
+		// TODO: 这一步应该在ResBuilder中实现
 		for (auto& c : resKey)
 			if (c == '\\' || c == '/')
 				c = '.';
@@ -232,7 +235,7 @@ Config* Resource::getConfig(const char* name)
 	const auto result = resourceMap.find(name);
 
 	if (result == resourceMap.end())
-		throw(std::invalid_argument(std::string("Resource doesn't exist:") + name));
+		throw(std::invalid_argument(std::string("Config Resource doesn't exist:") + name));
 	if (result->second.first != ConfigRes)
 		throw(std::invalid_argument(std::string("Resource type doesn't equal") + name));
 
@@ -244,7 +247,7 @@ Texture* Resource::getTexture(const char* name)
 	const auto result = resourceMap.find(name);
 
 	if (result == resourceMap.end())
-		throw(std::invalid_argument(std::string("Resource doesn't exist:") + name));
+		throw(std::invalid_argument(std::string("Texture Resource doesn't exist:") + name));
 	if (result->second.first != TextureRes)
 		throw(std::invalid_argument(std::string("Resource type doesn't equal") + name));
 

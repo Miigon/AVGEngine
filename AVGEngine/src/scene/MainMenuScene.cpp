@@ -3,8 +3,8 @@
 
 MainMenuScene::MainMenuScene()
 {
-	//³õÊ¼»¯ÅäÖÃ
-	Scene::init(*Resource::getConfig("res.scene.MainMenuScene.cnf"));
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Scene::init(*Resource::getConfig("scene.MainMenuScene.cnf"));
 }
 
 void MainMenuScene::tick()
