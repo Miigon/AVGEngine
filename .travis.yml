@@ -13,7 +13,7 @@ script:
   - sudo bash BuildAndroid.sh
   - cd ../
   - mkdir GitPage
-  - cp "AndroidProject/bin/*.apk" "GitPage/"
+  - cp AndroidProject/bin/*.apk GitPage/
 deploy:
   provider: pages
   skip-cleanup: true

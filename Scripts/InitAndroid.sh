@@ -2,7 +2,7 @@ cd ../
 # 配置安卓下SDL开发环境
 if [ ! -d "AndroidProject" ]; then
 	if [ ! -f "SDL2-2.0.7.tar.gz" ]; then
-	  wget http://www.libsdl.org/release/SDL2-2.0.7.tar.gz
+	  sudo wget http://www.libsdl.org/release/SDL2-2.0.7.tar.gz 2>/dev/null
 	fi
 	
 	echo "unzip sdl2"
@@ -11,7 +11,7 @@ if [ ! -d "AndroidProject" ]; then
 	mv SDL2-2.0.7 AndroidProject/jni/SDL2
 	
 	if [ ! -f "SDL2_image-2.0.2.tar.gz" ]; then
-	  wget http://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.2.tar.gz
+	  sudo wget http://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.2.tar.gz 2>/dev/null
 	fi
 	
 	echo "unzip sdl2_image"
@@ -19,7 +19,7 @@ if [ ! -d "AndroidProject" ]; then
 	mv SDL2_image-2.0.2 AndroidProject/jni/SDL2_image
 	
 	if [ ! -f "SDL2_ttf-2.0.14.tar.gz" ]; then
-	  wget http://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.14.tar.gz
+	  sudo wget http://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.14.tar.gz 2>/dev/null
 	fi
 	
 	echo "unzip sdl2_ttf"
@@ -29,7 +29,7 @@ fi
 
 # 下载NDK
 if [ ! -f "android-ndk-r16b-linux-x86_64.zip" ]; then
-	wget https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip
+	sudo wget https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip 2>/dev/null
 fi
 
 sudo apt-get install unzip
