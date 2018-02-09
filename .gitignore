@@ -275,4 +275,6 @@ ResBuilder/ResBuilder/ResBuilder\.class
 /AVGEngine/res
 /res.pk
 
+.vscode/
+
 /build
