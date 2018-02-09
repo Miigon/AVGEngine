@@ -12,12 +12,12 @@ public:
 
 	void init(const Config& labelConfig) override
 	{
-		//³õÊ¼»¯¿Ø¼ş
+		//åˆå§‹åŒ–æ§ä»¶
 		if (labelConfig.has("[Widget]"))
-			//ÓĞWidget±êÇ©
+			//æœ‰Widgetæ ‡ç­¾
 			Widget::init(*labelConfig.getAsConfig("[Widget]"));
 		else
-			//ÎŞWidget±êÇ©
+			//æ— Widgetæ ‡ç­¾
 			Widget::init(labelConfig);
 	}
 };

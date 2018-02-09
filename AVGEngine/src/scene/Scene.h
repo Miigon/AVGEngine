@@ -17,7 +17,7 @@ public:
 	Scene() = default;
 	virtual ~Scene() = default;
 
-	//ÓÃconfig³õÊ¼»¯Scene
+	//ç”¨configåˆå§‹åŒ–Scene
 	void init(const Config& sceneConfig) override;
 };
 

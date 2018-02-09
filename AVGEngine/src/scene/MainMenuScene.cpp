@@ -3,7 +3,7 @@
 
 MainMenuScene::MainMenuScene()
 {
-	//��ʼ������
+	//初始化配置
 	Scene::init(*Resource::getConfig("scene.MainMenuScene.cnf"));
 }
 

@@ -12,7 +12,7 @@ void Scene::draw()
 
 void Scene::init(const Config& config)
 {
-	//³õÊ¼»¯¿Ø¼þÈÝÆ÷
+	//åˆå§‹åŒ–æŽ§ä»¶å®¹å™¨
 	const auto sceneConfig = config.getAsConfig("[Scene]");
 
 	for (const auto& conf : sceneConfig->getConfigsConst())
@@ -22,11 +22,11 @@ void Scene::init(const Config& config)
 		if (tag.empty())
 			continue;
 
-		//³õÊ¼»¯¿Ø¼þÈÝÆ÷
+		//åˆå§‹åŒ–æŽ§ä»¶å®¹å™¨
 		if (tag == "[WidgetContainer]")
 			WidgetContainer::init(*sceneConfig->getAsConfig(conf.first));
 
-		//³õÊ¼»¯¿Ø¼þ
+		//åˆå§‹åŒ–æŽ§ä»¶
 		if (tag == "[Widget]")
 			WidgetContainer::init(*sceneConfig->getAsConfig(conf.first));
 	}
