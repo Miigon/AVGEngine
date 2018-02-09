@@ -10,6 +10,7 @@
 
 #ifdef WIN32
 #include <io.h>
+#include <direct.h>
 #define avg_mkdir(dir) _mkdir(dir)
 #define avg_access(dir,mode) _access(dir, mode)
 #else
@@ -21,7 +22,6 @@
 
 #ifdef AVG_DESKTOP
 #include <SDL2/SDL.h>
-//#include <direct.h>
 #define RESOURCE_ROOT_PATH std::string("")
 #else
 #include <SDL.h>
