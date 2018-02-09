@@ -13,6 +13,7 @@ script:
   - sudo bash BuildAndroid.sh
   - cd ../
   - mkdir GitPage
+  - cp ReadMe.md GitPage/ReadMe.md
   - cp AndroidProject/bin/*.apk GitPage/
 deploy:
   provider: pages
