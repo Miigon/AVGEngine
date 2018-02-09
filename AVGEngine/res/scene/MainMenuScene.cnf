@@ -15,7 +15,7 @@
 			}
 		}
 		#自定义的控件的基类都是WidgetContainer
-		[widget.Dialog.cnf]dialog1 =
+		[res.widget.Dialog.cnf]dialog1 =
 		{
 			text = Test!
 		}
