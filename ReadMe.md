@@ -7,14 +7,16 @@
 [![Travis](https://img.shields.io/travis/GScience/AVGEngine.svg?label=Android)](https://www.travis-ci.org/GScience/AVGEngine)
 ### 1. 安装
 #### a. Windows
-首先你需要安装好vcpkg，并且安装了Visual Studio 2017，之后我们需要执行以下命令：
+首先你需要安装好 vcpkg，并且安装了 Visual Studio 2017，之后我们需要执行以下命令：
 >vcpkg install glew sdl2 sdl2-image dirent
 
 如果没有出现就可以正常编译了。
 #### b. Android
-Android下的开发有些复杂，我只为Linux环境写了一个编译脚本：InitAndroid.sh。运行此脚本，项目中会多出三个.tar.gz文件，一个.zip文件以及两个文件夹：AndroidProject和AndroidNDK。之后运行BuildAndroid.sh即可开始编译。这里需要注意，需要自行安装Android SDK等与安卓开发有关的东西，不然无法正常编译。（安卓开发就是麻烦）
+Android下的开发有些复杂，我只为 Linux 环境写了一个编译脚本：`InitAndroid.sh`。运行此脚本，项目中会多出三个.tar.gz文件，一个.zip文件以及两个文件夹：AndroidProject和AndroidNDK。之后运行`BuildAndroid.sh`即可开始编译。这里需要注意，需要自行安装 Android SDK 等与安卓开发有关的东西，不然无法正常编译。（安卓开发就是麻烦）
 #### c. IOS
 IOS下的开发环境暂未架设完成，当前进度：0%。
+#### d. *NIX
+使用 CMake 编译，建议新建 `Build` 文件夹，然后在其中执行 `cmake ..`
 ### 2. 开源协议
 本项目遵循GPL许可证！！！！
 ### 3. 使用的开源库
