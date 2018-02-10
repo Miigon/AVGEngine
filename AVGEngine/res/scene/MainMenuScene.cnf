@@ -1,5 +1,5 @@
 [Scene] =
-	{
+{
 	#创建并初始化控件容器
 	[WidgetContainer] = 
 	{
@@ -18,6 +18,8 @@
 		[res.widget.Dialog.cnf]dialog1 =
 		{
 			text = Test!
+			size.width = 1.0f
+			size.height = 0.2f
 		}
 	}
 }

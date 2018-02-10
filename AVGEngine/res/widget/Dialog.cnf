@@ -2,11 +2,11 @@
 {
 	#在自定义控件中可以使用自定义的变量
 	#变量引用请使用$(VauleName)
-	[Label]label1 = 
+	#可以访问Widget中的基本属性
+	[Label]dialogText = 
 	{
-		[Widget] =
-		{
-			caption = $(text)
-		}
+		caption = $(text)
+		size.height = $(size.height)
+		size.width = $(size.width) - $(size.height)
 	}
 }

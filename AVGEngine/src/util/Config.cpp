@@ -1,6 +1,7 @@
 #include "Config.h"
 #include <fstream>
 #include <sstream>
+#include <list>
 
 ConfigPtr Config::getAsConfig(const std::string& key) const
 {
@@ -147,4 +148,137 @@ ConfigPtr Config::loadConfig(const char* fileName, const int offset)
 	std::stringstream stream;
 	stream << file.rdbuf();
 	return loadConfig(stream);
+}
+
+double Config::getExpressionResult(const std::string& expressionStr)
+{
+	enum ExpressionOperator
+	{
+		Number, Plus, Minus, Multiply, Divided
+	};
+
+	auto bracketCount = 0;
+	std::string subExpression;
+	std::string readNumber;
+	std::list<std::pair<ExpressionOperator, double>> expression;
+
+	//解析整个表达式
+	for (auto& c : expressionStr)
+	{
+		if (bracketCount > 0)
+			subExpression += c;
+
+		switch (c)
+		{
+		case '(':
+			bracketCount++;
+			break;
+		case ')':
+			if (--bracketCount == 0)
+			{
+				readNumber = std::to_string(getExpressionResult(subExpression.substr(0, subExpression.length() - 1)));
+				subExpression = "";
+			}
+			break;
+		case '+':
+		case '-':
+		case '*':
+		case '/':
+			//是否是子表达式中的内容
+			if (bracketCount)
+				break;
+			
+			//是读到了数字
+			if (readNumber.empty())
+				throw (std::invalid_argument(std::string("can't find the number before thr operator: ") + c));
+
+			//加入表达式
+			expression.emplace_back(std::make_pair(Number, std::stod(readNumber)));
+			readNumber = "";
+			switch (c)
+			{
+			case '+':
+				expression.emplace_back(std::make_pair(Plus, 0.0));
+				break;
+			case '-':
+				expression.emplace_back(std::make_pair(Minus, 0.0));
+				break;
+			case '*':
+				expression.emplace_back(std::make_pair(Multiply, 0.0));
+				break;
+			case '/':
+				expression.emplace_back(std::make_pair(Divided, 0.0));
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			readNumber += c;
+		}
+	}
+
+	//最后一个数字（因为后边没有运算符所以单独处理
+	if (readNumber.empty())
+		throw (std::invalid_argument(std::string("can't find the last number")));
+
+	expression.emplace_back(std::make_pair(Number, std::stod(readNumber)));
+
+	//计算乘法和除法
+	for (auto item = expression.begin(); ;)
+	{
+		const auto number1 = item;
+		const auto expressOperator = ++item;
+
+		//是不是最后一个数字（最后一个数字后边无运算符)
+		if (expressOperator == expression.end())
+			break;
+		const auto number2 = ++item;
+
+		if (expressOperator->first == Multiply)
+			number1->second *= number2->second;
+		else if (expressOperator->first == Divided)
+			number1->second /= number2->second;
+		else
+			continue;
+
+		//定位到number 1
+		item = number1;
+		expression.erase(expressOperator);
+		expression.erase(number2);
+	}
+
+	//计算加法和减法
+	for (auto item = expression.begin(); ;)
+	{
+		const auto number1 = item;
+		const auto expressOperator = ++item;
+
+		//是不是最后一个数字（最后一个数字后边无运算符)
+		if (expressOperator == expression.end())
+			break;
+		const auto number2 = ++item;
+
+		if (expressOperator->first == Plus)
+			number1->second += number2->second;
+		else if (expressOperator->first == Minus)
+			number1->second -= number2->second;
+		else
+			continue;
+
+		//定位到number 1
+		item = number1;
+		expression.erase(expressOperator);
+		expression.erase(number2);
+	}
+
+	if (expression.size() != 1)
+		throw (std::runtime_error("failed to read expression :" + expressionStr));
+
+	return expression.begin()->second;
+}
+
+double Config::getAsExpression(const std::string& key) const
+{
+	return getExpressionResult(get(key));
 }

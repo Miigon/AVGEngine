@@ -11,6 +11,9 @@ int main(int argc, char* argv[])
 {
 	Application app;
 
+#ifdef _DEBUG
+	app.run(std::make_shared<MainMenuScene>());
+#else
 	try
 	{
 		app.run(std::make_shared<MainMenuScene>());
@@ -20,6 +23,6 @@ int main(int argc, char* argv[])
 		std::cerr << e.what() << std::endl;
 		system("pause");
 	}
-
+#endif
 	return 0;
 }

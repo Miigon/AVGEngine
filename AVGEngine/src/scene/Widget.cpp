@@ -14,7 +14,7 @@ void Widget::init(const Config& config)
 			case FieldInt:
 				try
 				{
-					setField(conf.first, std::stoi(conf.second));
+					setField(conf.first, static_cast<int>(Config::getExpressionResult(conf.second)));
 				}
 				catch (std::exception& e)
 				{
@@ -35,7 +35,7 @@ void Widget::init(const Config& config)
 			case FieldDouble:
 				try
 				{
-					setField(conf.first, std::stod(conf.second));
+					setField(conf.first, Config::getExpressionResult(conf.second));
 				}
 				catch(std::exception& e)
 				{

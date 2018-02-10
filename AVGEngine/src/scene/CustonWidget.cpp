@@ -1,6 +1,5 @@
 #include "CustomWidget.h"
 #include <sstream>
-#include <iostream>
 
 CustomWidget::CustomWidget(const Config& config)
 {
@@ -11,7 +10,7 @@ CustomWidget::CustomWidget(const Config& config)
 void CustomWidget::init(const Config& config)
 {
 	//修改配置中的变量
-	auto widgetContainer(mWidgetContainerTemplate);
+	auto widgetContainerConf(mWidgetContainerTemplate);
 
 	for (const auto& value : config.getConfigsConst())
 	{
@@ -19,11 +18,43 @@ void CustomWidget::init(const Config& config)
 
 		size_t findResult;
 
-		while ((findResult = widgetContainer.find(nameInConfig)) != std::string::npos)
-			widgetContainer = widgetContainer.replace(widgetContainer.find(nameInConfig), nameInConfig.size(), value.second);
+		while ((findResult = widgetContainerConf.find(nameInConfig)) != std::string::npos)
+			widgetContainerConf = widgetContainerConf.replace(widgetContainerConf.find(nameInConfig), nameInConfig.size(), value.second);
 	}
 
-	std::stringstream stringstream(widgetContainer);
+	//当前Widget的属性
+	for (const auto& field : getFields())
+	{
+		auto nameInConfig = std::string("$(") + field.first + ")";
+
+		size_t findResult;
+
+		while ((findResult = widgetContainerConf.find(nameInConfig)) != std::string::npos)
+		{
+			std::string value;
+
+			switch (field.second.first)
+			{
+			case FieldString:
+				value = *reinterpret_cast<std::string*>(field.second.second);
+				break;
+			case FieldInt:
+				value = std::to_string(*reinterpret_cast<int*>(field.second.second));
+				break;
+			case FieldDouble:
+				value = std::to_string(*reinterpret_cast<double*>(field.second.second));
+				break;
+			case FieldBool:
+				value = *reinterpret_cast<bool*>(field.second.second) ? "TRUE" : "";
+				break;
+			default:
+				break;
+			}
+			widgetContainerConf = widgetContainerConf.replace(widgetContainerConf.find(nameInConfig), nameInConfig.size(), value);
+		}
+	}
+
+	std::stringstream stringstream(widgetContainerConf);
 
 	WidgetContainer::init(*Config::loadConfig(stringstream));
 }

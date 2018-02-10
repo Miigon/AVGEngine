@@ -53,6 +53,9 @@ public:
 	//!加载配置文件
 	static ConfigPtr loadConfig(std::stringstream&);
 
+	//!解析表达式
+	static double getExpressionResult(const std::string& expressionStr);
+
 	//!获取配置
 	bool has(const std::string& key) const { return mValueMap.find(key) != mValueMap.end(); }
 	std::string get(const std::string& key) const
@@ -64,6 +67,7 @@ public:
 
 		return result->second;
 	}
+	double getAsExpression(const std::string& key) const;
 	std::string getAsString(const std::string& key) const { return get(key); }
 	int getAsInt(const std::string& key) const { return std::stoi(get(key)); }
 	int getAsLong(const std::string& key) const { return std::stol(get(key)); }
