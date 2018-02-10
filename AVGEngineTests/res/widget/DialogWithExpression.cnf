@@ -5,10 +5,6 @@
 	[Label]label1 = 
 	{
 		caption = $(text)
-	}
-	[res.widget.Dialog.cnf]dialog1 = 
-	{
-		label1Caption = $(text)
-		label2Caption = $(text2)
+		size.height = $(expression)
 	}
 }

@@ -1,0 +1,11 @@
+[Scene] =
+{
+	#创建并初始化控件容器
+	[WidgetContainer] = 
+	{
+		[res.widget.DialogWithExpression.cnf]dialog1 =
+		{
+			expression = "1 + 2 + 3 * (1 + 2+3/3-10)/10-1"
+		}
+	}
+}
