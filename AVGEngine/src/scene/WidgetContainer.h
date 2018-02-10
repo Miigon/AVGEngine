@@ -8,7 +8,7 @@ class WidgetContainer :public Widget
 public:
 	std::vector<std::shared_ptr<Widget>> widgets;
 
-	//!获取指定名称的控件@note 如果未找到则返回nullptr
+	//!鑾峰彇鎸囧畾鍚嶇О鐨勬帶浠禓note 濡傛灉鏈壘鍒板垯杩斿洖nullptr
 	template <class t> std::shared_ptr<t> findWidget(const std::string& name) const
 	{
 		for (const auto& w : widgets)

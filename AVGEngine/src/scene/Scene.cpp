@@ -13,17 +13,17 @@ void Scene::draw()
 
 void Scene::init(const Config& config)
 {
-	//³õÊ¼»¯¿Ø¼þÈÝÆ÷
+	//åˆå§‹åŒ–æŽ§ä»¶å®¹å™¨
 	const auto sceneConfig = config.getAsConfig("[Scene]");
 
-	//³õÊ¼»¯¿Ø¼þ
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ø¼ï¿½
 	if (sceneConfig->has("[Widget]"))
 		WidgetContainer::init(*sceneConfig->getAsConfig("[Widget]"));
 
 	setField("size.height", 1.0);
 	setField("size.width", 1.0);
 
-	//ÉèÖÃÅäÖÃÖÐµÄÊôÐÔ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 	auto widgetsConfig = sceneConfig->getAsString("[WidgetContainer]");
 
 	for (const auto& field : getFields())
@@ -59,6 +59,6 @@ void Scene::init(const Config& config)
 
 	std::stringstream stringstream(widgetsConfig);
 
-	//³õÊ¼»¯¿Ø¼þÈÝÆ÷
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	WidgetContainer::init(*Config::loadConfig(stringstream));
 }

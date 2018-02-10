@@ -8,10 +8,10 @@
 
 class Application
 {
-	//´°Ìå
+	//çª—ä½“
 	WindowPtr mWindow;
 
-	//³¡¾°
+	//åœºæ™¯
 	ScenePtr mScene;
 
 public:
@@ -37,10 +37,10 @@ public:
 
 	Application()
 	{
-		//´´½¨´°Ìå
+		//åˆ›å»ºçª—ä½“
 		mWindow = Window::createWindow("AVGEngine", 256, 256);
 		
-		//ÉèÖÃ»Øµ÷
+		//è®¾ç½®å›è°ƒ
 		mWindow->setDrawFunc([&]() { draw(); });
 		mWindow->setMouseMoveCallback([&](double mouseX, double mouseY) { mouseMoveEvent(mouseX, mouseY); });
 		mWindow->setMouseButtonCallback([&](double mouseX, double mouseY, int buttom, int stage)
@@ -49,15 +49,15 @@ public:
 		});
 		mWindow->setTickCallback([&]() { tickEvent(); });
 
-		//³õÊ¼»¯ÓëOpenGLÏà¹ØµÄÄÚÈİ
+		//åˆå§‹åŒ–ä¸OpenGLç›¸å…³çš„å†…å®¹
 		glEnable(GL_TEXTURE_2D);
 
-		//³õÊ¼»¯×ÊÔ´
+		//åˆå§‹åŒ–èµ„æº
 		Resource::init();
 	}
 
-	/*!ÔËĞĞ³ÌĞò
-	 * @param startScene ¿ªÊ¼Ê±ÏÔÊ¾µÄ³¡¾°
+	/*!è¿è¡Œç¨‹åº
+	 * @param startScene å¼€å§‹æ—¶æ˜¾ç¤ºçš„åœºæ™¯
 	 */
 	void run(const ScenePtr& startScene)
 	{

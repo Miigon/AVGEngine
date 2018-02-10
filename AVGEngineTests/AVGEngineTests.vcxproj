@@ -191,7 +191,7 @@ xcopy $(ProjectDir)res $(TargetDir)res\ /Y /E</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AVGEngine\src\AVGEngine.cpp" />
-    <ClCompile Include="..\AVGEngine\src\scene\CustonWidget.cpp" />
+    <ClCompile Include="..\AVGEngine\src\scene\CustomWidget.cpp" />
     <ClCompile Include="..\AVGEngine\src\scene\MainMenuScene.cpp" />
     <ClCompile Include="..\AVGEngine\src\scene\Scene.cpp" />
     <ClCompile Include="..\AVGEngine\src\scene\Widget.cpp" />

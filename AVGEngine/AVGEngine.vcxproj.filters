@@ -31,7 +31,7 @@
     <ClCompile Include="src\scene\WidgetContainer.cpp">
       <Filter>scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\CustonWidget.cpp">
+    <ClCompile Include="src\scene\CustomWidget.cpp">
       <Filter>scene</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\Widget.cpp">

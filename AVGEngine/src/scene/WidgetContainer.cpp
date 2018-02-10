@@ -9,14 +9,14 @@ void WidgetContainer::init(const Config& containerConfig)
 	{
 		const auto tag = CONFIG_TAG(config.first);
 
-		//¿Ø¼şÈİÆ÷ÎŞ±äÁ¿
+		//æ§ä»¶å®¹å™¨æ— å˜é‡
 		if (tag.empty())
 			continue;
 
-		//³õÊ¼»¯¿Ø¼ş
+		//åˆå§‹åŒ–æ§ä»¶
 		if (tag == "[Widget]")
 			Widget::init(*containerConfig.getAsConfig(config.first));
-		//ÄÚÖÃ¿Ø¼şÀàĞÍ
+		//å†…ç½®æ§ä»¶ç±»å‹
 		else if (tag == "[Label]")
 		{
 			try
@@ -28,10 +28,10 @@ void WidgetContainer::init(const Config& containerConfig)
 			}
 			catch (std::exception& e)
 			{
-				throw(std::runtime_error(std::string("Failed to create custon widget besause ") + e.what()));
+				throw(std::runtime_error(std::string("Failed to create Custom widget because ") + e.what()));
 			}
 		}
-		//×Ô¶¨Òå¿Ø¼şÀàĞÍ
+		//è‡ªå®šä¹‰æ§ä»¶ç±»å‹
 		else
 		{
 			try
@@ -44,7 +44,7 @@ void WidgetContainer::init(const Config& containerConfig)
 			}
 			catch(std::exception& e)
 			{
-				throw(std::runtime_error(std::string("Failed to create custon widget besause ") + e.what()));
+				throw(std::runtime_error(std::string("Failed to create Custom widget because ") + e.what()));
 			}
 		}
 	}

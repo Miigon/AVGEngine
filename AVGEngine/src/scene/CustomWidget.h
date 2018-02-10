@@ -8,8 +8,8 @@ class CustomWidget :public WidgetContainer
 	std::string mWidgetContainerTemplate;
 
 public:
-	/*!Í¨¹ıÅäÖÃÀ´´´½¨×Ô¶¨Òå¿Ø¼ş
-	 * ×Ô¶¯ÉèÖÃ±äÁ¿¡¢×é¼şµÈµÈ
+	/*!é€šè¿‡é…ç½®æ¥åˆ›å»ºè‡ªå®šä¹‰æ§ä»¶
+	 * è‡ªåŠ¨è®¾ç½®å˜é‡ã€ç»„ä»¶ç­‰ç­‰
 	 */
 	explicit CustomWidget(const Config& config);
 

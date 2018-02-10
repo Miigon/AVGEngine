@@ -3,13 +3,12 @@
 
 CustomWidget::CustomWidget(const Config& config)
 {
-	//³õÊ¼»¯¿Ø¼şÈİÆ÷
+	//åˆå§‹åŒ–æ§ä»¶å®¹å™¨
 	mWidgetContainerTemplate = config.get("[WidgetContainer]");
 }
 
 void CustomWidget::init(const Config& config)
 {
-	//ĞŞ¸ÄÅäÖÃÖĞµÄ±äÁ¿
 	auto widgetContainerConf(mWidgetContainerTemplate);
 
 	for (const auto& value : config.getConfigsConst())

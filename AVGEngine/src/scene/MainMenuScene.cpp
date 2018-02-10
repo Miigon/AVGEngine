@@ -3,7 +3,7 @@
 
 MainMenuScene::MainMenuScene()
 {
-	//³õÊ¼»¯ÅäÖÃ
+	//åˆå§‹åŒ–é…ç½®
 	Scene::init(*Resource::getConfig("res.scene.MainMenuScene.cnf"));
 }
 
