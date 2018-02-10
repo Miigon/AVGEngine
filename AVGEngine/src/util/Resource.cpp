@@ -76,12 +76,10 @@ void unpackage(const std::string& path)
 
 	const auto resPackage = SDL_RWFromFile("res.pk", "rb");
 
-	if(resPackage == nullptr)
+	if (resPackage == nullptr)
 	{
-		std::stringstream ss;
-		ss << "打开资源包失败！错误信息：" << SDL_GetError();
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "错误", ss.str().c_str(), nullptr);
-		exit(1);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "错误", (std::string("打开资源包失败，因为") + SDL_GetError()).c_str(), nullptr);
+		throw(std::runtime_error("faied to find res.pk"));
 	}
 
 	//检查包头
