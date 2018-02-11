@@ -2,6 +2,17 @@
 
 #include <utility>
 #include <memory>
+#include "Platform.h"
+
+#ifdef AVG_DESKTOP
+#include <SDL2/SDL.h>
+#define RESOURCE_ROOT_PATH std::string("")
+#else
+#include <SDL.h>
+#ifdef __ANDROID__
+#define RESOURCE_ROOT_PATH (std::string(SDL_AndroidGetInternalStoragePath()) + "/")
+#endif
+#endif
 
 class Config;
 class Texture;

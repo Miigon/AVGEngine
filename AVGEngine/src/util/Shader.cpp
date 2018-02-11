@@ -1,6 +1,7 @@
 #include "Platform.h"
 #include "Shader.h"
 #include "OpenGL.h"
+#include "Resource.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -51,7 +52,7 @@ ShaderPtr Shader::loadShader(const char* fileName)
 		const auto shader = glCreateShader(entry->type);
 
 		//¶ÁÈ¡Shader´úÂë
-		std::ifstream shaderFileStream(entry->fileName);
+		std::ifstream shaderFileStream(RESOURCE_ROOT_PATH + entry->fileName);
 		std::stringstream shaderStream;
 		shaderStream << shaderFileStream.rdbuf();
 

@@ -20,16 +20,6 @@
 #define avg_access(dir,mode) access(dir, mode)
 #endif
 
-#ifdef AVG_DESKTOP
-#include <SDL2/SDL.h>
-#define RESOURCE_ROOT_PATH std::string("")
-#else
-#include <SDL.h>
-#ifdef __ANDROID__
-#define RESOURCE_ROOT_PATH (std::string(SDL_AndroidGetInternalStoragePath()) + "/")
-#endif
-#endif
-
 std::unordered_map<std::string, std::pair<Resource::ResourceType, std::shared_ptr<void>>> resourceMap;
 
 void Resource::registerResource(const char* key, const std::pair<ResourceType, std::shared_ptr<void>>& value)
