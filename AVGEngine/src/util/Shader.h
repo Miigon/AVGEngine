@@ -32,9 +32,15 @@ public:
 	static ShaderPtr loadShader(const char* fileName);
 
 	//!获取Arrtibute位置
-	int getAttribLocation(const char* name) const
+	GLuint getAttribLocation(const char* name) const
 	{
 		return glGetAttribLocation(mProgram, name);
+	}
+
+	//!获取Uniform位置
+	GLuint getUniformLocation(const char* name) const
+	{
+		return glGetUniformLocation(mProgram, name);
 	}
 
 	//!绑定着色器

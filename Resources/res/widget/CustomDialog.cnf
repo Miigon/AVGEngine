@@ -1,0 +1,15 @@
+[WidgetContainer]=
+{
+	[res.widget.Dialog.cnf]dialog=
+	{
+		text = $(text)
+		pos.x = $(pos.x)
+		pos.y = $(pos.y)
+		size.width = $(size.width)
+		size.height = $(size.height)
+		background.r = 187 / 255
+		background.g = 1.0
+		background.b = 1.0
+		background.a = 0.25
+	}
+}

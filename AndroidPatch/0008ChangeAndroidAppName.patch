@@ -1,0 +1,8 @@
+--- AndroidProject/res/values/strings.xml	2018-02-11 20:10:40.601849500 +0800
++++ AndroidProject/res/values/strings.xml	2018-02-11 20:12:30.095878800 +0800
+@@ -1,4 +1,4 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="app_name">SDL App</string>
++    <string name="app_name">AVG Engine</string>
+ </resources>

@@ -10,5 +10,9 @@
 		size.width = $(size.width) - $(size.height)
 		pos.x = $(size.height)
 		pos.y = 0
+		background.r = $(background.r)
+		background.g = $(background.g)
+		background.b = $(background.b)
+		background.a = $(background.a)
 	}
 }

@@ -92,10 +92,10 @@ ShaderPtr Shader::loadShader(const char* fileName)
 			delete[] log;
 			throw std::runtime_error("Shader compilation failed");
 		}
-
+		
 		//绑定Shader到着色器程序
 		glAttachShader(program, shader);
-
+		
 		++entry;
 	}
 	glLinkProgram(program);

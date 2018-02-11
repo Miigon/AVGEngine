@@ -4,22 +4,17 @@
 
 class Label :public Widget
 {
+	GLuint mLabelBackgroundVao = 0;
+	GLuint mLabelTextVao = 0;
+	GLuint mLabelVbo = 0;
+
 public:
 	Label()
 	{
 		addField("caption", FieldString);
 	}
 
-	void init(const Config& labelConfig) override
-	{
-		//初始化控件
-		if (labelConfig.has("[Widget]"))
-			//有Widget标签
-			Widget::init(*labelConfig.getAsConfig("[Widget]"));
-		else
-			//无Widget标签
-			Widget::init(labelConfig);
-	}
+	void init(const Config& labelConfig) override;
 
 	void draw() override;
 };

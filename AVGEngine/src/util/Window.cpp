@@ -127,5 +127,9 @@ WindowPtr Window::createWindow(const char* title, const int width, const int hei
 	glIsVertexArrayOES = (PFNGLISVERTEXARRAYOESPROC)eglGetProcAddress("glIsVertexArrayOES");
 #endif
 
+	//∆Ù”√OpenGLπ¶ƒ‹
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	return windowPtr;
 }

@@ -55,6 +55,12 @@ Widget::Widget()
 {
 	addField("pos.x", FieldDouble);
 	addField("pos.y", FieldDouble);
+
 	addField("size.height", FieldDouble);
 	addField("size.width", FieldDouble);
+
+	addField("background.r", FieldDouble);
+	addField("background.g", FieldDouble);
+	addField("background.b", FieldDouble);
+	addField("background.a", FieldDouble);
 }
