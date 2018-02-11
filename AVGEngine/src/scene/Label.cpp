@@ -19,12 +19,12 @@ void Label::draw()
 
 void Label::init(const Config& labelConfig)
 {
-	//³õÊ¼»¯¿Ø¼ş
+	//åˆå§‹åŒ–æ§ä»¶
 	if (labelConfig.has("[Widget]"))
-		//ÓĞWidget±êÇ©
+		//æœ‰Widgetæ ‡ç­¾
 		Widget::init(*labelConfig.getAsConfig("[Widget]"));
 	else
-		//ÎŞWidget±êÇ©
+		//æ— Widgetæ ‡ç­¾
 		Widget::init(labelConfig);
 
 #ifdef _TEST_
@@ -44,7 +44,7 @@ void Label::init(const Config& labelConfig)
 	const auto baclGroundColorB = static_cast<float>(getDouble("background.b"));
 	const auto baclGroundColorA = static_cast<float>(getDouble("background.a"));
 
-	//¶¥µãÊı¾İ
+	//é¡¶ç‚¹æ•°æ®
 	GLfloat vertexDataWithTexture[6][5]
 	{
 		poxX / windowWidth * 2 - 1, poxY / windowHeight * 2 - 1, 0.0f,0.0f,0.0f,
@@ -55,17 +55,17 @@ void Label::init(const Config& labelConfig)
 		(poxX + width) / windowWidth * 2 - 1, poxY / windowHeight * 2 - 1,0.0f,1.0f,0.0f
 	};
 
-	//´´½¨VBO
+	//åˆ›å»ºVBO
 	glGenBuffers(1, &mLabelVbo);
 	glBindBuffer(GL_ARRAY_BUFFER, mLabelVbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexDataWithTexture), &vertexDataWithTexture, GL_STATIC_DRAW);
 
-	/***********Label±³¾°***********/
-	//´´½¨VAO
+	/***********LabelèƒŒæ™¯***********/
+	//åˆ›å»ºVAO
 	glGenVertexArrays(1, &mLabelBackgroundVao);
 	glBindVertexArray(mLabelBackgroundVao);
 
-	//°ó¶¨¶¥µãÊôĞÔ(Ê¹ÓÃsimple2dshader)
+	//ç»‘å®šé¡¶ç‚¹å±æ€§(ä½¿ç”¨simple2dshader)
 	const auto simpleShader = Resource::getShader("res.shader.Simple2D.shader");
 	const auto simpleShaderAttributeLoc = simpleShader->getAttribLocation("vPosition");
 
@@ -73,16 +73,16 @@ void Label::init(const Config& labelConfig)
 	glVertexAttribPointer(simpleShaderAttributeLoc, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), nullptr);
 	glEnableVertexAttribArray(simpleShaderAttributeLoc);
 
-	//ÉèÖÃÑÕÉ«
+	//è®¾ç½®é¢œè‰²
 	const auto uniformLoc = simpleShader->getUniformLocation("fColor");
 	glUniform4f(uniformLoc, baclGroundColorR, baclGroundColorG, baclGroundColorB, baclGroundColorA);
 	
-	/***********LabelÎÄ×Ö***********/
-	//´´½¨VAO
+	/***********Labelæ–‡å­—***********/
+	//åˆ›å»ºVAO
 	glGenVertexArrays(1, &mLabelTextVao);
 	glBindVertexArray(mLabelTextVao);
 
-	//°ó¶¨¶¥µãÊôĞÔ(Ê¹ÓÃsimple2dshader)
+	//ç»‘å®šé¡¶ç‚¹å±æ€§(ä½¿ç”¨simple2dshader)
 	const auto textureShader = Resource::getShader("res.shader.Simple2DTexture.shader");
 	const auto textureShaderVertexAttributeLoc = textureShader->getAttribLocation("vPosition");
 	const auto textureShaderTextureAttributeLoc = textureShader->getAttribLocation("vTextureCoord");
@@ -94,7 +94,7 @@ void Label::init(const Config& labelConfig)
 	glEnableVertexAttribArray(textureShaderVertexAttributeLoc);
 	glEnableVertexAttribArray(textureShaderTextureAttributeLoc);
 
-	//ÉèÖÃÎÆÀí
+	//è®¾ç½®çº¹ç†
 	const auto textureShaderTextureLoc = textureShader->getUniformLocation("texture");
 	const auto textureId = static_cast<GLuint>(*Resource::getTexture("res.image.MainMenuBackground.png"));
 	glActiveTexture(GL_TEXTURE0);

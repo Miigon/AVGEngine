@@ -1,7 +1,7 @@
 
 #include "Window.h"
 #include "OpenGL.h"
-#ifdef _WIN32
+#ifdef AVG_DESKTOP
 #include <SDL2/SDL.h>
 #else
 #include <SDL_egl.h>
@@ -9,31 +9,31 @@
 #endif
 #include <stdexcept>
 
-#ifndef _WIN32
+#ifndef AVG_DESKTOP
 PFNGLGENVERTEXARRAYSOESPROC glGenVertexArraysOES;
 PFNGLBINDVERTEXARRAYOESPROC glBindVertexArrayOES;
 PFNGLDELETEVERTEXARRAYSOESPROC glDeleteVertexArraysOES;
 PFNGLISVERTEXARRAYOESPROC glIsVertexArrayOES;
 #endif
 
-//SDL´°Ìå
+//SDLçª—ä½“
 SDL_Window* window = nullptr;
 
-//×¢²á»Øµ÷º¯Êı
+//æ³¨å†Œå›è°ƒå‡½æ•°
 void Window::setMouseMoveCallback(const MouseMoveCallback& function) { mMouseMoveCallback = function; }
 void Window::setMouseButtonCallback(const MouseButtonCallback& function) { mMouseButtonCallback = function; }
 void Window::setTickCallback(const TickCallback& function) { mTickCallback = function; }
 
-//äÖÈ¾µ÷ÓÃ
+//æ¸²æŸ“è°ƒç”¨
 void Window::setDrawFunc(const DrawFunc& function) { mDrawFunc = function; }
 
-//ÊÍ·Å
+//é‡Šæ”¾
 Window::~Window()
 {
 	SDL_DestroyWindow(window);
 }
 
-//ÊÂ¼ş´¦Àí
+//äº‹ä»¶å¤„ç†
 void Window::poolEvents()
 {
 	SDL_Event sdlEvent;
@@ -42,16 +42,16 @@ void Window::poolEvents()
 	{
 		switch (sdlEvent.type)
 		{
-		//ÍË³ö
+		//é€€å‡º
 		case SDL_QUIT:
 			mShouldClose = true;
 			break;
-		//Êó±êÒÆ¶¯
+		//é¼ æ ‡ç§»åŠ¨
 		case SDL_MOUSEMOTION:
 			mMouseMoveCallback(static_cast<double>(sdlEvent.button.x) / mWindowWidth,
 			                   1 - static_cast<double>(sdlEvent.button.y) / mWindowHeight);
 			break;
-		//Êó±êµã»÷
+		//é¼ æ ‡ç‚¹å‡»
 		case SDL_MOUSEBUTTONDOWN:
 			mMouseButtonCallback(static_cast<double>(sdlEvent.button.x) / mWindowWidth,
 			                     1 - static_cast<double>(sdlEvent.button.y) / mWindowHeight, 
@@ -70,7 +70,7 @@ void Window::poolEvents()
 	}
 }
 
-//Ö÷Ñ­»·
+//ä¸»å¾ªç¯
 void Window::joinLoop()
 {
 	if (!mDrawFunc)
@@ -95,7 +95,7 @@ void Window::joinLoop()
 	}
 }
 
-//´´½¨´°Ìå
+//åˆ›å»ºçª—ä½“
 WindowPtr Window::createWindow(const char* title, const int width, const int height)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -108,26 +108,26 @@ WindowPtr Window::createWindow(const char* title, const int width, const int hei
 	windowPtr->mWindowHeight = height;
 	windowPtr->mWindowWidth = width;
 
-	//³õÊ¼»¯²¢´´½¨´°Ìå
+	//åˆå§‹åŒ–å¹¶åˆ›å»ºçª—ä½“
 	window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
 	if (!window)
 		throw(std::runtime_error("Failed to create window"));
 
 	SDL_GL_CreateContext(window);
 
-	//windowsÏÂ³õÊ¼»¯glew
-#ifdef _WIN32
+	//æ¡Œé¢å¹³å°ä¸‹åˆå§‹åŒ–glew
+#ifdef AVG_DESKTOP
 	if (glewInit() != GLEW_OK)
 		throw(std::runtime_error("Failed to init glew"));
 #else
-	//ÆäËûÆ½Ì¨ÏÂ»ñÈ¡À©Õ¹
+	//Androidä¸‹è·å–æ‰©å±•
 	glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC)eglGetProcAddress("glGenVertexArraysOES");
 	glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC)eglGetProcAddress("glBindVertexArrayOES");
 	glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArraysOES");
 	glIsVertexArrayOES = (PFNGLISVERTEXARRAYOESPROC)eglGetProcAddress("glIsVertexArrayOES");
 #endif
 
-	//ÆôÓÃOpenGL¹¦ÄÜ
+	//å¯ç”¨OpenGLåŠŸèƒ½
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
