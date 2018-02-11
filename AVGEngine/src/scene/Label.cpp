@@ -27,6 +27,9 @@ void Label::init(const Config& labelConfig)
 		//ŒﬁWidget±Í«©
 		Widget::init(labelConfig);
 
+#ifdef _TEST_
+	return;
+#endif
 	const auto windowWidth = static_cast<float>(Application::getInstance()->windowWidth);
 	const auto windowHeight = static_cast<float>(Application::getInstance()->windowHeight);
 
