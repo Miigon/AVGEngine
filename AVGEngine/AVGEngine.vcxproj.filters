@@ -41,6 +41,9 @@
       <Filter>scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\util\Shader.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\util\Window.h">
@@ -82,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="src\scene\Image.h">
       <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Shader.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Platform.h">
+      <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

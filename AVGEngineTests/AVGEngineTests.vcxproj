@@ -184,6 +184,7 @@ xcopy $(ProjectDir)res $(TargetDir)res\ /Y /E</Command>
     <ClInclude Include="..\AVGEngine\src\util\DynamicObj.h" />
     <ClInclude Include="..\AVGEngine\src\util\OpenGL.h" />
     <ClInclude Include="..\AVGEngine\src\util\Resource.h" />
+    <ClInclude Include="..\AVGEngine\src\util\Shader.h" />
     <ClInclude Include="..\AVGEngine\src\util\Texture.h" />
     <ClInclude Include="..\AVGEngine\src\util\Window.h" />
     <ClInclude Include="stdafx.h" />
@@ -200,6 +201,7 @@ xcopy $(ProjectDir)res $(TargetDir)res\ /Y /E</Command>
     <ClCompile Include="..\AVGEngine\src\scene\WidgetContainer.cpp" />
     <ClCompile Include="..\AVGEngine\src\util\Config.cpp" />
     <ClCompile Include="..\AVGEngine\src\util\Resource.cpp" />
+    <ClCompile Include="..\AVGEngine\src\util\Shader.cpp" />
     <ClCompile Include="..\AVGEngine\src\util\Texture.cpp" />
     <ClCompile Include="..\AVGEngine\src\util\Window.cpp" />
     <ClCompile Include="stdafx.cpp">

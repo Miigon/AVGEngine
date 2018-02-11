@@ -3,7 +3,7 @@
 
 CustomWidget::CustomWidget(const Config& config)
 {
-	//åˆå§‹åŒ–æ§ä»¶å®¹å™¨
+	//³õÊ¼»¯WidgetÄ£°å
 	mWidgetContainerTemplate = config.get("[WidgetContainer]");
 }
 

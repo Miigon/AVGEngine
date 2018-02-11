@@ -1,0 +1,11 @@
+--- AndroidProject/jni/src/Android.mk	2018-02-11 13:32:27.925854200 +0800
++++ AndroidProject/jni/src/Android.mk	2018-02-11 13:33:41.116813800 +0800
+@@ -17,7 +18,7 @@ LOCAL_SRC_FILES := $(MY_CPP_LIST)
+ 
+ LOCAL_SHARED_LIBRARIES := SDL2 libSDL2_image libSDL2_ttf
+ 
+-LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -llog
++LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -llog -lEGL
+ LOCAL_CPPFLAGS += -std=c++11 -fexceptions
+ 
+ include $(BUILD_SHARED_LIBRARY)

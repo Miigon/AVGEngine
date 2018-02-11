@@ -4,9 +4,17 @@
 #ifdef _WIN32
 #include <SDL2/SDL.h>
 #else
+#include <SDL_egl.h>
 #include <SDL.h>
 #endif
 #include <stdexcept>
+
+#ifndef _WIN32
+PFNGLGENVERTEXARRAYSOESPROC glGenVertexArraysOES;
+PFNGLBINDVERTEXARRAYOESPROC glBindVertexArrayOES;
+PFNGLDELETEVERTEXARRAYSOESPROC glDeleteVertexArraysOES;
+PFNGLISVERTEXARRAYOESPROC glIsVertexArrayOES;
+#endif
 
 //SDL窗体
 SDL_Window* window = nullptr;
@@ -111,6 +119,12 @@ WindowPtr Window::createWindow(const char* title, const int width, const int hei
 #ifdef _WIN32
 	if (glewInit() != GLEW_OK)
 		throw(std::runtime_error("Failed to init glew"));
+#else
+	//其他平台下获取扩展
+	glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC)eglGetProcAddress("glGenVertexArraysOES");
+	glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC)eglGetProcAddress("glBindVertexArrayOES");
+	glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArraysOES");
+	glIsVertexArrayOES = (PFNGLISVERTEXARRAYOESPROC)eglGetProcAddress("glIsVertexArrayOES");
 #endif
 
 	return windowPtr;

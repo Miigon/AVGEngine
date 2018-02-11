@@ -29,6 +29,7 @@
     <ClCompile Include="src\scene\WidgetContainer.cpp" />
     <ClCompile Include="src\util\Config.cpp" />
     <ClCompile Include="src\util\Resource.cpp" />
+    <ClCompile Include="src\util\Shader.cpp" />
     <ClCompile Include="src\util\Texture.cpp" />
     <ClCompile Include="src\util\Window.cpp" />
   </ItemGroup>
@@ -44,7 +45,9 @@
     <ClInclude Include="src\util\Config.h" />
     <ClInclude Include="src\util\DynamicObj.h" />
     <ClInclude Include="src\util\OpenGL.h" />
+    <ClInclude Include="src\util\Platform.h" />
     <ClInclude Include="src\util\Resource.h" />
+    <ClInclude Include="src\util\Shader.h" />
     <ClInclude Include="src\util\Texture.h" />
     <ClInclude Include="src\util\Window.h" />
   </ItemGroup>

@@ -1,12 +1,12 @@
 #include "Resource.h"
 #include "Config.h"
-#include <map>
+#include <unordered_map>
 #include <string>
 #include "Texture.h"
 #include <dirent.h>
 #include <vector>
-#include <sstream>
 #include <fstream>
+#include "Shader.h"
 
 #ifdef WIN32
 #include <io.h>
@@ -30,7 +30,7 @@
 #endif
 #endif
 
-std::map<std::string, std::pair<Resource::ResourceType, std::shared_ptr<void>>> resourceMap;
+std::unordered_map<std::string, std::pair<Resource::ResourceType, std::shared_ptr<void>>> resourceMap;
 
 void Resource::registerResource(const char* key, const std::pair<ResourceType, std::shared_ptr<void>>& value)
 {
@@ -222,6 +222,16 @@ void Resource::init()
 					Texture::loadTexture(file.c_str())
 				)
 			);
+		else if (extension == ".shader")
+			registerResource
+			(
+				resKey.c_str(),
+				std::make_pair
+				(
+					ShaderRes,
+					Shader::loadShader(file.c_str())
+				)
+			);
 	}
 }
 
@@ -247,4 +257,16 @@ Texture* Resource::getTexture(const char* name)
 		throw(std::invalid_argument(std::string("Resource type doesn't equal") + name));
 
 	return reinterpret_cast<Texture*>(result->second.second.get());
+}
+
+Shader* Resource::getShader(const char* name)
+{
+	const auto result = resourceMap.find(name);
+
+	if (result == resourceMap.end())
+		throw(std::invalid_argument(std::string("Resource doesn't exist:") + name));
+	if (result->second.first != ShaderRes)
+		throw(std::invalid_argument(std::string("Resource type doesn't equal") + name));
+
+	return reinterpret_cast<Shader*>(result->second.second.get());
 }

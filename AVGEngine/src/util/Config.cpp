@@ -142,7 +142,7 @@ ConfigPtr Config::loadConfig(std::stringstream& configStr)
 	return config;
 }
 
-ConfigPtr Config::loadConfig(const char* fileName, const int offset)
+ConfigPtr Config::loadConfig(const char* fileName)
 {
 	auto file = std::ifstream(fileName, std::ios::binary);
 	std::stringstream stream;

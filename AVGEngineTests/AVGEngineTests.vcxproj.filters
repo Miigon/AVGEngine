@@ -66,6 +66,9 @@
     <ClInclude Include="..\AVGEngine\src\scene\Image.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\AVGEngine\src\util\Shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -108,6 +111,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\AVGEngine\src\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AVGEngine\src\util\Shader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

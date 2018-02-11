@@ -49,7 +49,7 @@ public:
 	Config& operator=(const Config&) = delete;
 
 	//!加载配置文件
-	static ConfigPtr loadConfig(const char* fileName, int offset = 0);
+	static ConfigPtr loadConfig(const char* fileName);
 	//!加载配置文件
 	static ConfigPtr loadConfig(std::stringstream&);
 
