@@ -18,7 +18,7 @@ if(UNIX)
     add_definitions(-DAVG_UNIX)
 endif()
 
-add_definitions(-DAVG_UNIVERSAL_DESKTOP -g)
+add_definitions(-DAVG_UNIVERSAL_DESKTOP)
 
 find_package(SDL2 REQUIRED)
 target_include_directories(avgengine PUBLIC ${SDL2_INCLUDE_DIRS})
