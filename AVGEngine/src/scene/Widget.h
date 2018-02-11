@@ -1,6 +1,7 @@
 #pragma once
 #include "../util/Config.h"
 #include "../util/DynamicObj.h"
+#include "../util/OpenGL.h"
 
 class Widget :public DynamicObj
 {

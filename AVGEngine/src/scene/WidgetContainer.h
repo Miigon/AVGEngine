@@ -19,6 +19,8 @@ public:
 		return nullptr;
 	}
 
+	void draw() override;
+
 	void onClick(double mouseX, double mouseY) override
 	{
 		

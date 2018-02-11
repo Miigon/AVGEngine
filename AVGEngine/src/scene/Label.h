@@ -20,4 +20,6 @@ public:
 			//无Widget标签
 			Widget::init(labelConfig);
 	}
+
+	void draw() override;
 };

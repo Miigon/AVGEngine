@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\AVGEngine.cpp" />
     <ClCompile Include="src\scene\CustomWidget.cpp" />
+    <ClCompile Include="src\scene\Label.cpp" />
     <ClCompile Include="src\scene\MainMenuScene.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
     <ClCompile Include="src\scene\Widget.cpp" />

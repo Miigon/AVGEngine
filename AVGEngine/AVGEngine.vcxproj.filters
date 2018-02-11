@@ -37,6 +37,10 @@
     <ClCompile Include="src\scene\Widget.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene\Label.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\util\Window.h">

@@ -17,8 +17,8 @@ public:
 	Scene() = default;
 	virtual ~Scene() = default;
 
-	//用config初始化Scene
-	void init(const Config& sceneConfig) override;
+	//!用config初始化Scene
+	void init(const Config& config) override;
 };
 
 using ScenePtr = std::shared_ptr<Scene>;

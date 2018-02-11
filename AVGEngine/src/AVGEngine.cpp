@@ -9,7 +9,7 @@
 
 int main(int argc, char* argv[])
 {
-	Application app;
+	Application app(768, 512);
 
 #ifdef _DEBUG
 	app.run(std::make_shared<MainMenuScene>());

@@ -49,3 +49,9 @@ void WidgetContainer::init(const Config& containerConfig)
 		}
 	}
 }
+
+void WidgetContainer::draw()
+{
+	for (auto& widget: widgets)
+		widget->draw();
+}

@@ -1,6 +1,7 @@
 #include <sstream>
 #include "Scene.h"
 #include "../util/OpenGL.h"
+#include "../Application.h"
 
 void Scene::draw()
 {
@@ -9,6 +10,8 @@ void Scene::draw()
 				 0.3f, 1.0f);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	WidgetContainer::draw();
 }
 
 void Scene::init(const Config& config)
@@ -16,14 +19,14 @@ void Scene::init(const Config& config)
 	//初始化控件容器
 	const auto sceneConfig = config.getAsConfig("[Scene]");
 
-	//��ʼ���ؼ�
+	//初始化Widget
 	if (sceneConfig->has("[Widget]"))
 		WidgetContainer::init(*sceneConfig->getAsConfig("[Widget]"));
 
-	setField("size.height", 1.0);
-	setField("size.width", 1.0);
+	setField("size.height", static_cast<double>(Application::getInstance()->windowHeight));
+	setField("size.width", static_cast<double>(Application::getInstance()->windowWidth));
 
-	//���������е�����
+	//初始化控件容器
 	auto widgetsConfig = sceneConfig->getAsString("[WidgetContainer]");
 
 	for (const auto& field : getFields())
@@ -59,6 +62,5 @@ void Scene::init(const Config& config)
 
 	std::stringstream stringstream(widgetsConfig);
 
-	//��ʼ���ؼ�����
 	WidgetContainer::init(*Config::loadConfig(stringstream));
 }

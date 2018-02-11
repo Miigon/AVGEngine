@@ -8,13 +8,17 @@
 
 class Application
 {
-	//窗体
+	//!窗体
 	WindowPtr mWindow;
-
-	//场景
+	//!场景
 	ScenePtr mScene;
+	//!实例
+	static Application* mApplication;
 
 public:
+	const int windowHeight;
+	const int windowWidth;
+
 	void draw()
 	{
 		mScene->draw();
@@ -35,10 +39,13 @@ public:
 		mScene->tick();
 	}
 
-	Application()
+	Application(const int width, const int height) :windowHeight(height), windowWidth(width)
 	{
+		//实例
+		mApplication = this;
+
 		//创建窗体
-		mWindow = Window::createWindow("AVGEngine", 256, 256);
+		mWindow = Window::createWindow("AVGEngine", windowWidth, windowHeight);
 		
 		//设置回调
 		mWindow->setDrawFunc([&]() { draw(); });
@@ -63,5 +70,11 @@ public:
 	{
 		mScene = startScene;
 		mWindow->joinLoop();
+	}
+
+	//!获取程序实例
+	static Application* getInstance()
+	{
+		return mApplication;
 	}
 };

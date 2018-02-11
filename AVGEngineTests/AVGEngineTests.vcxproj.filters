@@ -104,5 +104,11 @@
     <ClCompile Include="..\AVGEngine\src\scene\Widget.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\AVGEngine\src\scene\Label.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AVGEngine\src\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
