@@ -23,8 +23,12 @@ void Scene::init(const Config& config)
 	if (sceneConfig->has("[Widget]"))
 		WidgetContainer::init(*sceneConfig->getAsConfig("[Widget]"));
 
-	setField("size.height", static_cast<double>(Application::getInstance()->windowHeight));
-	setField("size.width", static_cast<double>(Application::getInstance()->windowWidth));
+	//有Application的话初始化Scene的大小为程序的窗口大小
+	if (Application::getInstance())
+	{
+		setField("size.height", static_cast<double>(Application::getInstance()->windowHeight));
+		setField("size.width", static_cast<double>(Application::getInstance()->windowWidth));
+	}
 
 	//初始化控件容器
 	auto widgetsConfig = sceneConfig->getAsString("[WidgetContainer]");
