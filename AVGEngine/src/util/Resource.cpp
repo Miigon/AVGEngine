@@ -7,8 +7,9 @@
 #include <vector>
 #include <fstream>
 #include "Shader.h"
+#include "Platform.h"
 
-#ifdef WIN32
+#ifdef AVG_WINDOWS
 #include <io.h>
 #include <direct.h>
 #define avg_mkdir(dir) _mkdir(dir)

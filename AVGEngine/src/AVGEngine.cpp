@@ -1,4 +1,5 @@
-#ifdef _WIN32
+#include "util/Platform.h"
+#ifdef AVG_DESKTOP
 #include <SDL2/SDL.h>
 #else
 #include <SDL.h>
