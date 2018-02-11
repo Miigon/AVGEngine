@@ -8,9 +8,9 @@ void Label::draw()
 	const auto simpleShader = Resource::getShader("res.shader.Simple2D.shader");
 	const auto textureShader = Resource::getShader("res.shader.Simple2DTexture.shader");
 	
-	//glBindVertexArray(mLabelBackgroundVao);
-	//simpleShader->useShader();
-	//glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(mLabelBackgroundVao);
+	simpleShader->useShader();
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glBindVertexArray(mLabelTextVao);
 	textureShader->useShader();

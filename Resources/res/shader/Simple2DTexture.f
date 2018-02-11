@@ -5,6 +5,7 @@ varying vec2 textureCoord;
 
 void main()
 {
-	gl_FragColor = texture2D(texture, vec2(0.0,0.0));
-	//gl_FragColor = vec4(textureCoord,0.0,1.0);
+	gl_FragColor = texture2D(texture, textureCoord);
+	if (gl_FragColor.a == 0.0f)
+		discard;
 }
